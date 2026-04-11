@@ -29,6 +29,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     alternates: { canonical: `/updates/${slug}` },
     openGraph: {
       type: "article",
+      locale: "ko_KR",
+      siteName: "근로·자녀장려금",
+      url: `https://eitc.fazr.co.kr/updates/${slug}`,
       publishedTime: post.date,
       authors: ["근로·자녀장려금"],
       images: [

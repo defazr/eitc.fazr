@@ -6,6 +6,10 @@ export const metadata: Metadata = {
     "2026 근로·자녀장려금 대상 여부를 건강보험료 기준으로 확인하세요. 가구원 수별 소득 기준, 직장·지역 건강보험료 기준표 안내.",
   alternates: { canonical: "/eligibility" },
   openGraph: {
+    type: "website",
+    locale: "ko_KR",
+    siteName: "근로·자녀장려금",
+    url: "https://eitc.fazr.co.kr/eligibility",
     images: [
       {
         url: "/og-guide.jpg",

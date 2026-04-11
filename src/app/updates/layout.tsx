@@ -2,6 +2,10 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   openGraph: {
+    type: "website",
+    locale: "ko_KR",
+    siteName: "근로·자녀장려금",
+    url: "https://eitc.fazr.co.kr/updates",
     images: [
       {
         url: "/og-guide.jpg",

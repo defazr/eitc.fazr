@@ -21,6 +21,10 @@ export const metadata: Metadata = {
     "2026 자녀장려금과 근로장려금에 대해 많이 묻는 질문 15가지를 정리했습니다. 신청기간, 지급일, 재산기준, 자녀세액공제 차감까지.",
   alternates: { canonical: "/faq" },
   openGraph: {
+    type: "website",
+    locale: "ko_KR",
+    siteName: "근로·자녀장려금",
+    url: "https://eitc.fazr.co.kr/faq",
     images: [
       {
         url: "/og-guide.jpg",
