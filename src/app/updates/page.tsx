@@ -8,9 +8,9 @@ import { AdSlot } from "@/components/ad-slot";
 import { UPDATES } from "@/data/updates";
 
 export const metadata: Metadata = {
-  title: "업데이트 - 고유가 피해지원금 최신 소식",
+  title: "업데이트 - 근로·자녀장려금 최신 소식",
   description:
-    "2026 고유가 피해지원금 정책 변경, 추경 심사 현황, 신청 일정 등 최신 업데이트 소식을 확인하세요.",
+    "2025년 귀속 근로·자녀장려금 정책 변경, 신청 일정 등 최신 업데이트 소식을 확인하세요.",
   alternates: { canonical: "/updates" },
 };
 
@@ -23,7 +23,7 @@ export default function UpdatesPage() {
         </div>
         <h1 className="text-2xl md:text-3xl font-bold">최신 업데이트</h1>
         <p className="text-muted-foreground mt-2">
-          고유가 피해지원금 관련 최신 소식과 정책 변경 사항
+          근로·자녀장려금 관련 최신 소식과 정책 변경 사항
         </p>
       </div>
 

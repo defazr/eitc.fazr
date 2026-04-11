@@ -19,10 +19,10 @@ export function Footer() {
           {/* 1단: 사이트 정보 */}
           <div>
             <h3 className="font-bold text-foreground mb-3">
-              고유가 피해지원금 안내
+              근로·자녀장려금 안내
             </h3>
             <p className="text-sm text-muted-foreground leading-relaxed">
-              2026 고유가 피해지원금 대상 확인, 예상 금액 계산, 신청 방법을
+              2025년 귀속 근로·자녀장려금 대상 확인, 예상 금액 계산, 신청 방법을
               안내하는 정보 허브입니다.
             </p>
             <div className="flex flex-col gap-1 mt-4">
@@ -38,13 +38,7 @@ export function Footer() {
               >
                 계산기
               </Link>
-              <Link
-                href="/regions"
-                className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-200 cursor-pointer"
-              >
-                지역별 안내
-              </Link>
-              <Link
+<Link
                 href="/faq"
                 className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-200 cursor-pointer"
               >
@@ -90,7 +84,7 @@ export function Footer() {
 
         <Separator className="my-8" />
         <p className="text-xs text-muted-foreground/60 text-center">
-          &copy; {new Date().getFullYear()} support.fazr.co.kr. All rights
+          &copy; {new Date().getFullYear()} eitc.fazr.co.kr. All rights
           reserved.
         </p>
       </div>

@@ -16,7 +16,7 @@ const NAV_ITEMS = [
   { href: "/", label: "홈" },
   { href: "/eligibility", label: "대상 확인" },
   { href: "/calculator", label: "계산기" },
-  { href: "/regions", label: "지역별 안내" },
+
   { href: "/faq", label: "자주 묻는 질문" },
   { href: "/updates", label: "업데이트" },
 ];
@@ -44,7 +44,7 @@ export function Navigation() {
     <header className="sticky top-0 z-40 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/80 border-b border-border">
       <div className="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
         <Link href="/" className="font-bold text-lg text-primary cursor-pointer">
-          고유가 피해지원금
+          근로·자녀장려금
         </Link>
 
         {/* Desktop */}
