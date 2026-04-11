@@ -5,6 +5,7 @@ import { SkinnyBar } from "@/components/skinny-bar";
 import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
 import { ScrollTopButton } from "@/components/scroll-top-button";
+import { ScrollToTopOnNavigation } from "@/components/scroll-to-top-on-navigation";
 import { VignetteCleanup } from "@/components/vignette-cleanup";
 
 const gaId = process.env.NEXT_PUBLIC_GA_ID;
@@ -94,6 +95,7 @@ export default function RootLayout({
         <main className="flex-1 min-h-dvh">{children}</main>
         <Footer />
         <ScrollTopButton />
+        <ScrollToTopOnNavigation />
       </body>
     </html>
   );

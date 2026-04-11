@@ -311,7 +311,7 @@ export default function HomePage() {
                 <Banknote className="h-8 w-8 text-emerald-600 shrink-0" />
                 <div>
                   <p className="font-semibold text-foreground">
-                    5월 고유가 피해지원금
+                    고유가 피해지원금
                   </p>
                   <p className="text-sm text-muted-foreground">
                     내가 받을 수 있는 정부 유류비 지원금 확인
@@ -330,10 +330,10 @@ export default function HomePage() {
                 <TrendingUp className="h-8 w-8 text-blue-600 shrink-0" />
                 <div>
                   <p className="font-semibold text-foreground">
-                    내 유류비 얼마나 줄어드나
+                    최저가 주유소 찾기
                   </p>
                   <p className="text-sm text-muted-foreground">
-                    유류비 절약 계산기로 확인하기
+                    내 주변 가장 싼 주유소를 지도로 확인
                   </p>
                 </div>
               </CardContent>
@@ -349,10 +349,10 @@ export default function HomePage() {
                 <Banknote className="h-8 w-8 text-indigo-600 shrink-0" />
                 <div>
                   <p className="font-semibold text-foreground">
-                    다른 계산기도 확인
+                    월급 실수령액 계산기
                   </p>
                   <p className="text-sm text-muted-foreground">
-                    실생활에 필요한 다양한 계산기
+                    근로소득세·4대보험·연말정산까지 한곳에
                   </p>
                 </div>
               </CardContent>
