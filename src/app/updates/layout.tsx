@@ -4,16 +4,16 @@ export const metadata: Metadata = {
   openGraph: {
     images: [
       {
-        url: "https://eitc.fazr.co.kr/og/og-updates.jpg",
+        url: "/og-guide.jpg",
         width: 1200,
         height: 630,
-        alt: "근로·자녀장려금 최신 소식",
+        alt: "2026 근로·자녀장려금 가이드 — 최신 소식",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    images: ["https://eitc.fazr.co.kr/og/og-updates.jpg"],
+    images: ["/og-guide.jpg"],
   },
 };
 

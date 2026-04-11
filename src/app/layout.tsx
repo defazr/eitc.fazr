@@ -27,10 +27,10 @@ export const metadata: Metadata = {
     siteName: "근로·자녀장려금",
     images: [
       {
-        url: "https://eitc.fazr.co.kr/og/og-main.jpg",
+        url: "/og-default.jpg",
         width: 1200,
         height: 630,
-        alt: "2025년 귀속 근로·자녀장려금 - 예상 금액 계산 및 자격 확인",
+        alt: "2026 근로·자녀장려금 신청 안내",
       },
     ],
   },
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     title: "근로·자녀장려금 - 예상 금액 계산 및 자격 확인",
     description:
       "2025년 귀속 근로·자녀장려금 대상 확인, 예상 금액 계산, 신청 방법 안내. 근로장려금 최대 330만원, 자녀장려금 1인당 최대 100만원.",
-    images: ["https://eitc.fazr.co.kr/og/og-main.jpg"],
+    images: ["/og-default.jpg"],
   },
   icons: {
     icon: "/favicon.ico",

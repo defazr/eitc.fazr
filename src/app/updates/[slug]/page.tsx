@@ -27,6 +27,23 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: post.title,
     description: post.description,
     alternates: { canonical: `/updates/${slug}` },
+    openGraph: {
+      type: "article",
+      publishedTime: post.date,
+      authors: ["근로·자녀장려금"],
+      images: [
+        {
+          url: "/og-guide.jpg",
+          width: 1200,
+          height: 630,
+          alt: post.title,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      images: ["/og-guide.jpg"],
+    },
   };
 }
 
