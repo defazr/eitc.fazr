@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Separator } from "@/components/ui/separator";
 
 const INTERNAL_SERVICES = [
+  { label: "고유가 피해지원금", href: "https://support.fazr.co.kr/" },
   { label: "최저가 주유소", href: "https://fuel.fazr.co.kr/" },
   { label: "오늘의 기름값", href: "https://oil.newsforgreens.com/" },
   { label: "개인회생 진단", href: "https://debt.newsforgreens.com/" },

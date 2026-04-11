@@ -14,6 +14,7 @@ import { Badge } from "@/components/ui/badge";
 import { DisclaimerBanner } from "@/components/disclaimer-banner";
 import { AdSlot } from "@/components/ad-slot";
 import { ShareButtons } from "@/components/share-buttons";
+import { UPDATES } from "@/data/updates";
 
 const QUICK_LINKS = [
   {
@@ -299,7 +300,26 @@ export default function HomePage() {
 
       {/* Internal Traffic CTAs */}
       <section className="max-w-6xl mx-auto px-4 pb-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <a
+            href="https://support.fazr.co.kr"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Card className="bg-gradient-to-br from-emerald-50 to-green-50 border-emerald-100 hover:shadow-md transition-all cursor-pointer">
+              <CardContent className="flex items-center gap-4 py-5">
+                <Banknote className="h-8 w-8 text-emerald-600 shrink-0" />
+                <div>
+                  <p className="font-semibold text-foreground">
+                    5월 고유가 피해지원금
+                  </p>
+                  <p className="text-sm text-muted-foreground">
+                    내가 받을 수 있는 정부 유류비 지원금 확인
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+          </a>
           <a
             href="https://fuel.fazr.co.kr"
             target="_blank"
@@ -341,14 +361,42 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Updates link */}
-      <section className="max-w-6xl mx-auto px-4 pb-8 text-center">
-        <Link
-          href="/updates"
-          className="inline-flex items-center gap-1 text-sm text-primary hover:underline"
-        >
-          근로·자녀장려금 최신 소식 확인 →
-        </Link>
+      {/* Latest Updates */}
+      <section className="max-w-6xl mx-auto px-4 py-16">
+        <h2 className="text-2xl font-bold text-center mb-8">
+          최신 가이드
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          {UPDATES.slice(0, 3).map((post) => (
+            <Link key={post.slug} href={`/updates/${post.slug}`}>
+              <Card className="hover:border-primary/30 hover:shadow-md transition-all cursor-pointer h-full">
+                <CardContent className="py-5">
+                  <Badge variant="secondary" className="mb-2 text-xs">
+                    {post.date}
+                  </Badge>
+                  <h3 className="font-semibold text-foreground mb-2 line-clamp-2">
+                    {post.title}
+                  </h3>
+                  <p className="text-sm text-muted-foreground line-clamp-2">
+                    {post.description}
+                  </p>
+                  <span className="inline-flex items-center gap-1 text-sm text-primary mt-3">
+                    자세히 보기
+                    <ArrowRight className="h-4 w-4" />
+                  </span>
+                </CardContent>
+              </Card>
+            </Link>
+          ))}
+        </div>
+        <div className="text-center mt-6">
+          <Link
+            href="/updates"
+            className="inline-flex items-center gap-1 text-sm text-primary hover:underline"
+          >
+            전체 가이드 보기 →
+          </Link>
+        </div>
       </section>
 
       {/* Share */}
