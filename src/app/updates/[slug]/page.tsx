@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 import { ArrowLeft, Clock, ArrowRight, Calculator } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -53,26 +55,35 @@ export default async function UpdateDetailPage({ params }: Props) {
 
         <ShareButtons title={post.title} />
 
-        {/* 요약 박스 */}
-        <div className="bg-primary/5 border border-primary/20 rounded-lg p-5 mb-8 space-y-2">
-          <p className="text-sm font-medium text-foreground">핵심 요약</p>
-          <ul className="text-sm text-muted-foreground space-y-1">
-            <li>현재 상태: 추경 국회 통과 (4월 10일)</li>
-            <li>1차 지급: 4월 중 (취약계층 자동 지급)</li>
-            <li>2차 지급: 5월 중 (일반 가구, 건보료 기준)</li>
-            <li>금액: 1인당 10만~60만원 (지역·계층별 차등)</li>
-          </ul>
-        </div>
-
         {/* Ad Slot 3 */}
         <div className="my-6">
           <AdSlot slot="7853952826" format="rectangle" />
         </div>
 
-        <div
-          className="prose prose-sm max-w-prose leading-relaxed prose-headings:text-foreground prose-h2:mt-10 prose-h2:mb-4 prose-h3:mt-8 prose-h3:mb-3 prose-p:text-muted-foreground prose-p:mb-4 prose-li:text-muted-foreground prose-a:text-primary prose-strong:text-foreground prose-ul:my-4 prose-ul:space-y-2 prose-ol:my-4 prose-ol:space-y-2 prose-hr:my-8"
-          dangerouslySetInnerHTML={{ __html: post.content }}
-        />
+        <div className="prose prose-sm max-w-prose leading-relaxed prose-headings:text-foreground prose-h2:mt-10 prose-h2:mb-4 prose-h3:mt-8 prose-h3:mb-3 prose-p:text-muted-foreground prose-p:mb-4 prose-li:text-muted-foreground prose-a:text-primary prose-strong:text-foreground prose-ul:my-4 prose-ul:space-y-2 prose-ol:my-4 prose-ol:space-y-2 prose-hr:my-8">
+          <ReactMarkdown
+            remarkPlugins={[remarkGfm]}
+            components={{
+              a: ({ href, children, ...props }) => {
+                const isExternal = href?.startsWith("http");
+                return (
+                  <a
+                    href={href}
+                    {...(isExternal && {
+                      target: "_blank",
+                      rel: "noopener noreferrer",
+                    })}
+                    {...props}
+                  >
+                    {children}
+                  </a>
+                );
+              },
+            }}
+          >
+            {post.content}
+          </ReactMarkdown>
+        </div>
       </article>
 
       <ShareButtons title={post.title} />
