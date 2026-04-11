@@ -2,7 +2,6 @@ import Link from "next/link";
 import {
   Calculator,
   Users,
-  MapPin,
   HelpCircle,
   ArrowRight,
   TrendingUp,
@@ -14,32 +13,24 @@ import { Badge } from "@/components/ui/badge";
 import { DisclaimerBanner } from "@/components/disclaimer-banner";
 import { AdSlot } from "@/components/ad-slot";
 import { ShareButtons } from "@/components/share-buttons";
-import { SUBSIDY_CONFIG } from "@/data/subsidy";
-
 const QUICK_LINKS = [
   {
     href: "/eligibility",
     icon: Users,
     title: "대상 확인",
-    desc: "건강보험료 기준으로 내가 받을 수 있는지 확인",
+    desc: "총소득·재산 기준으로 내가 받을 수 있는지 확인",
   },
   {
     href: "/calculator",
     icon: Calculator,
     title: "예상 금액 계산",
-    desc: "가구원 수와 지역에 따른 예상 지원금 확인",
-  },
-  {
-    href: "/regions",
-    icon: MapPin,
-    title: "지역별 안내",
-    desc: "89개 인구감소지역 특별·우대 혜택 확인",
+    desc: "가구유형과 총급여에 따른 예상 장려금 확인",
   },
   {
     href: "/faq",
     icon: HelpCircle,
     title: "자주 묻는 질문",
-    desc: "신청 방법, K패스, 금리인하 등 궁금한 것",
+    desc: "신청 방법, 자격 기준, 재산 요건 등 궁금한 것",
   },
 ];
 
@@ -50,23 +41,22 @@ export default function HomePage() {
       <section className="bg-gradient-to-b from-primary/5 to-background py-16 md:py-24">
         <div className="max-w-6xl mx-auto px-4 text-center">
           <Badge variant="secondary" className="mb-4 text-sm px-4 py-1">
-            추경 통과 — 4월 지급 시작
+            2025년 귀속 · 2026년 신청
           </Badge>
           <h1 className="text-3xl md:text-5xl font-bold text-foreground leading-tight mb-4">
-            고유가 피해지원금 대상인지
+            근로·자녀장려금
             <br />
-            지금 바로 확인하세요
+            얼마 받을 수 있을까?
           </h1>
           <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-1">
-            소득 하위 <span className="text-blue-600 font-bold">70%</span> 가구 대상
+            근로장려금 최대 <span className="text-blue-600 font-bold">330만원</span>
           </p>
           <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-3">
-            1인당 최대{" "}
-            <span className="text-blue-600 font-bold">60만원</span> 차등 지급
+            자녀장려금 1인당 최대{" "}
+            <span className="text-blue-600 font-bold">100만원</span>
           </p>
           <p className="text-sm text-muted-foreground mb-8">
-            총 예산 {SUBSIDY_CONFIG.totalBudget} · 대상{" "}
-            {SUBSIDY_CONFIG.targetPopulation}
+            정기 신청 2026.05.01 ~ 06.01 · 지급 2026.09월
           </p>
 
           <Button size="lg" render={<Link href="/calculator" />} className="text-lg px-8 py-6 shadow-lg bg-[#0369A1] hover:bg-[#0369A1]/90 cursor-pointer transition-all duration-200">
@@ -84,10 +74,10 @@ export default function HomePage() {
       <section className="max-w-6xl mx-auto px-4 -mt-8">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {[
-            { label: "수도권", value: "10만원", sub: "1인당" },
-            { label: "비수도권", value: "15만원", sub: "1인당" },
-            { label: "우대지역", value: "20만원", sub: "인구감소 49곳" },
-            { label: "특별지역", value: "25만원", sub: "인구감소 40곳" },
+            { label: "단독가구", value: "165만원", sub: "근로장려금 최대" },
+            { label: "홑벌이", value: "285만원", sub: "근로장려금 최대" },
+            { label: "맞벌이", value: "330만원", sub: "근로장려금 최대" },
+            { label: "자녀 1인당", value: "100만원", sub: "자녀장려금 최대" },
           ].map((stat) => (
             <Card key={stat.label} className="text-center">
               <CardContent className="pt-5 pb-4">
@@ -194,13 +184,13 @@ export default function HomePage() {
           href="/updates"
           className="inline-flex items-center gap-1 text-sm text-primary hover:underline"
         >
-          고유가 피해지원금 지급 일정 확인 →
+          근로·자녀장려금 최신 소식 확인 →
         </Link>
       </section>
 
       {/* Share */}
       <section className="max-w-6xl mx-auto px-4 pb-8">
-        <ShareButtons title="고유가 피해지원금 대상 확인해보세요" />
+        <ShareButtons title="근로·자녀장려금 대상 확인해보세요" />
       </section>
 
       {/* Disclaimer */}

@@ -82,8 +82,8 @@ export default async function UpdateDetailPage({ params }: Props) {
         <Button render={<Link href="/calculator" />} className="gap-2">
             <Calculator className="h-4 w-4" />내 예상 지원금 계산하기
         </Button>
-        <Button variant="outline" render={<Link href="/regions" />} className="gap-2">
-            지역별 안내 보기
+        <Button variant="outline" render={<Link href="/eligibility" />} className="gap-2">
+            대상 기준 확인하기
             <ArrowRight className="h-4 w-4" />
         </Button>
       </div>

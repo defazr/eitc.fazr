@@ -11,34 +11,34 @@ const gaId = process.env.NEXT_PUBLIC_GA_ID;
 
 export const metadata: Metadata = {
   title: {
-    default: "고유가 피해지원금 - 대상 확인 및 예상 금액 계산",
-    template: "%s | 고유가 피해지원금",
+    default: "근로·자녀장려금 - 예상 금액 계산 및 자격 확인",
+    template: "%s | 근로·자녀장려금",
   },
   description:
-    "2026 고유가 피해지원금(고유가지원금/민생지원금) 대상 확인, 신청 방법, 지급일 안내. 소득 하위 70% 1인당 10만~60만원 지급.",
-  metadataBase: new URL("https://support.fazr.co.kr"),
+    "2025년 귀속 근로·자녀장려금 대상 확인, 예상 금액 계산, 신청 방법 안내. 근로장려금 최대 330만원, 자녀장려금 1인당 최대 100만원.",
+  metadataBase: new URL("https://eitc.fazr.co.kr"),
   alternates: {
     canonical: "/",
   },
   openGraph: {
     type: "website",
     locale: "ko_KR",
-    siteName: "고유가 피해지원금",
+    siteName: "근로·자녀장려금",
     images: [
       {
-        url: "https://support.fazr.co.kr/og/og-main.jpg",
+        url: "https://eitc.fazr.co.kr/og/og-main.jpg",
         width: 1200,
         height: 630,
-        alt: "2026 고유가 피해지원금 - 대상 확인 & 예상 금액 계산",
+        alt: "2025년 귀속 근로·자녀장려금 - 예상 금액 계산 및 자격 확인",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "고유가 피해지원금 - 대상 확인 및 예상 금액 계산",
+    title: "근로·자녀장려금 - 예상 금액 계산 및 자격 확인",
     description:
-      "2026 고유가 피해지원금(고유가지원금/민생지원금) 대상 확인, 신청 방법, 지급일 안내. 소득 하위 70% 1인당 10만~60만원 지급.",
-    images: ["https://support.fazr.co.kr/og/og-main.jpg"],
+      "2025년 귀속 근로·자녀장려금 대상 확인, 예상 금액 계산, 신청 방법 안내. 근로장려금 최대 330만원, 자녀장려금 1인당 최대 100만원.",
+    images: ["https://eitc.fazr.co.kr/og/og-main.jpg"],
   },
   icons: {
     icon: "/favicon.ico",

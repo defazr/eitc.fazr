@@ -6,12 +6,17 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { DisclaimerBanner } from "@/components/disclaimer-banner";
 import { AdSlot } from "@/components/ad-slot";
-import { SUBSIDY_CONFIG } from "@/data/subsidy";
+// TODO: PR-2 — replace with calc.fazr engine import
+// Temporary stub to prevent build errors
+const SUBSIDY_CONFIG = {
+  incomeThresholds: [] as { members: number; monthlyIncome: number; insuranceEmployee: number; insuranceRegional: number }[],
+  amounts: { metropolitan: 0, nonMetropolitan: 0, depopulationPreferred: 0, depopulationSpecial: 0 },
+};
 
 export const metadata: Metadata = {
-  title: "대상 확인 - 고유가 피해지원금 자격 기준",
+  title: "대상 확인 - 근로·자녀장려금 자격 기준",
   description:
-    "2026 고유가 피해지원금 대상 여부를 건강보험료 기준으로 확인하세요. 가구원 수별 소득 기준, 직장·지역 건강보험료 기준표 안내.",
+    "2026 근로·자녀장려금 대상 여부를 건강보험료 기준으로 확인하세요. 가구원 수별 소득 기준, 직장·지역 건강보험료 기준표 안내.",
   alternates: { canonical: "/eligibility" },
 };
 
@@ -27,7 +32,7 @@ export default function EligibilityPage() {
           <Users className="h-8 w-8 text-primary" />
         </div>
         <h1 className="text-2xl md:text-3xl font-bold">
-          고유가 피해지원금 대상 확인
+          근로·자녀장려금 대상 확인
         </h1>
         <p className="text-muted-foreground mt-2">
           소득 하위 70% 가구가 대상이며, 건강보험료로 판단합니다
@@ -169,10 +174,7 @@ export default function EligibilityPage() {
             ))}
           </div>
           <p className="text-xs text-muted-foreground mt-3">
-            * 인구감소지역 거주자는 추가 혜택을 받을 수 있습니다.{" "}
-            <Link href="/regions" className="text-primary underline">
-              89개 지역 확인하기
-            </Link>
+            * 인구감소지역 거주자는 추가 혜택을 받을 수 있습니다.
           </p>
         </CardContent>
       </Card>
@@ -202,16 +204,13 @@ export default function EligibilityPage() {
 
       <div className="flex flex-wrap justify-center gap-4 mt-4 mb-8 text-sm">
         <Link href="/faq" className="text-primary hover:underline">
-          고유가 지원금 대상 조건이 헷갈린다면 FAQ 보기 →
+          근로·자녀장려금 대상 조건이 헷갈린다면 FAQ 보기 →
         </Link>
-        <Link href="/regions" className="text-primary hover:underline">
-          지역별 지급 금액 확인 →
-        </Link>
-        <Link href="/updates" className="text-primary hover:underline">
-          고유가 피해지원금 최신 정책 변경 확인 →
+<Link href="/updates" className="text-primary hover:underline">
+          근로·자녀장려금 최신 정책 변경 확인 →
         </Link>
         <Link href="/" className="text-muted-foreground hover:text-foreground">
-          고유가 피해지원금 전체 정보 보기 →
+          근로·자녀장려금 전체 정보 보기 →
         </Link>
       </div>
 

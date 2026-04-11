@@ -18,12 +18,32 @@ import { DisclaimerBanner } from "@/components/disclaimer-banner";
 import { AdSlot } from "@/components/ad-slot";
 import { ShareButtons } from "@/components/share-buttons";
 import { GovLinkButton } from "@/components/gov-link-button";
-import {
-  SUBSIDY_CONFIG,
-  getSubsidyAmount,
-  checkEligibility,
-  type RegionType,
-} from "@/data/subsidy";
+// TODO: PR-2 — replace with calc.fazr engine import
+// import {
+//   SUBSIDY_CONFIG,
+//   getSubsidyAmount,
+//   checkEligibility,
+//   type RegionType,
+// } from "@/data/subsidy";
+
+type RegionType = string;
+
+/* ── stub: SUBSIDY_CONFIG ── */
+const SUBSIDY_CONFIG = {
+  incomeThresholds: [] as {
+    members: number;
+    insuranceEmployee: number;
+    insuranceRegional: number;
+  }[],
+};
+
+function checkEligibility(_members: number, _insurance: number) {
+  return { eligible: false, message: "계산 엔진 교체 중입니다." };
+}
+
+function getSubsidyAmount(_region: RegionType) {
+  return 0;
+}
 
 type CalcResult = {
   eligible: boolean;
@@ -86,7 +106,7 @@ export default function CalculatorPage() {
           <Calculator className="h-8 w-8 text-primary" />
         </div>
         <h1 className="text-2xl md:text-3xl font-bold">
-          고유가 피해지원금 계산기
+          근로·자녀장려금 계산기
         </h1>
         <p className="text-muted-foreground mt-2">
           3가지 정보만 입력하면 예상 지원금을 바로 확인할 수 있습니다
@@ -159,8 +179,8 @@ export default function CalculatorPage() {
             </Select>
             <p className="text-xs text-muted-foreground mt-1">
               인구감소지역 여부는{" "}
-              <a href="/regions" className="text-primary underline">
-                지역별 안내
+              <a href="/eligibility" className="text-primary underline">
+                대상 기준 안내
               </a>
               에서 확인하세요
             </p>
@@ -238,10 +258,6 @@ export default function CalculatorPage() {
 
             <div className="mt-6 pt-4 border-t space-y-2">
               <div className="flex flex-wrap justify-center gap-3 text-sm">
-                <Link href="/regions" className="text-primary hover:underline">
-                  지역별 상세 정보 보기
-                </Link>
-                <span className="text-muted-foreground">·</span>
                 <Link href="/faq" className="text-primary hover:underline">
                   자주 묻는 질문
                 </Link>
@@ -263,7 +279,7 @@ export default function CalculatorPage() {
       {/* Share + Ad */}
       {result && (
         <>
-          <ShareButtons title="고유가 피해지원금 계산 결과 확인해보세요" />
+          <ShareButtons title="근로·자녀장려금 계산 결과 확인해보세요" />
           <div className="mt-6">
             <AdSlot slot="1480116169" format="rectangle" />
           </div>
@@ -314,7 +330,7 @@ export default function CalculatorPage() {
 
       <div className="flex flex-wrap justify-center gap-4 mt-8 text-sm">
         <Link href="/updates" className="text-primary hover:underline">
-          고유가 피해지원금 지급 일정이 궁금하다면 →
+          근로·자녀장려금 지급 일정이 궁금하다면 →
         </Link>
         <Link href="/" className="text-muted-foreground hover:text-foreground">
           처음으로 돌아가기 →
