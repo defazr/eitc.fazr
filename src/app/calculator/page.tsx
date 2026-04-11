@@ -182,13 +182,13 @@ export default function CalculatorPage() {
           {/* 총급여 */}
           <div>
             <label className="text-sm font-medium mb-2 block">
-              부부합산 총급여액 등
+              부부합산 연간 총급여액 등
             </label>
             <div className="relative">
               <Input
                 type="text"
                 inputMode="numeric"
-                placeholder="총급여액을 입력하세요"
+                placeholder="예: 25,000,000 (연간 기준)"
                 value={formatNumber(form.totalIncome)}
                 onChange={(e) =>
                   updateForm("totalIncome", parseNumberInput(e.target.value))
@@ -198,6 +198,9 @@ export default function CalculatorPage() {
                 원
               </span>
             </div>
+            <p className="text-xs text-muted-foreground mt-1">
+              2025년 1월 ~ 12월 연간 총급여액 합계 (월급이 아닌 연간 기준)
+            </p>
           </div>
 
           {/* 재산 */}
@@ -209,7 +212,7 @@ export default function CalculatorPage() {
               <Input
                 type="text"
                 inputMode="numeric"
-                placeholder="재산 합계를 입력하세요"
+                placeholder="예: 100,000,000"
                 value={formatNumber(form.totalProperty)}
                 onChange={(e) =>
                   updateForm("totalProperty", parseNumberInput(e.target.value))

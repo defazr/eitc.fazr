@@ -143,9 +143,9 @@ export default function FAQPage() {
       <Card className="mb-8 bg-gradient-to-br from-blue-50 to-sky-50 border-blue-100">
         <CardContent className="flex items-center gap-4 py-5">
           <div className="flex-1">
-            <p className="font-semibold">대출 이자 줄이는 법</p>
+            <p className="font-semibold">빚 때문에 막막하다면</p>
             <p className="text-sm text-muted-foreground">
-              금리인하 요구권 활용으로 이자 부담을 줄여보세요
+              개인회생·파산 절차와 자격 조건을 확인해보세요
             </p>
           </div>
           <a
