@@ -57,7 +57,7 @@ export default async function UpdateDetailPage({ params }: Props) {
 
         {/* Ad Slot 3 */}
         <div className="my-6">
-          <AdSlot slot="7853952826" format="rectangle" />
+          <AdSlot slot="6086273688" format="rectangle" />
         </div>
 
         <div className="prose prose-sm max-w-prose leading-relaxed prose-headings:text-foreground prose-h2:mt-10 prose-h2:mb-4 prose-h3:mt-8 prose-h3:mb-3 prose-p:text-muted-foreground prose-p:mb-4 prose-li:text-muted-foreground prose-a:text-primary prose-strong:text-foreground prose-ul:my-4 prose-ul:space-y-2 prose-ol:my-4 prose-ol:space-y-2 prose-hr:my-8">

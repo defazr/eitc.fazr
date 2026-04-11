@@ -544,7 +544,7 @@ export default function CalculatorPage() {
             <DisclaimerBanner />
           </div>
           <div className="mt-4">
-            <AdSlot slot="1480116169" format="rectangle" />
+            <AdSlot slot="6180199492" format="rectangle" />
           </div>
         </>
       )}

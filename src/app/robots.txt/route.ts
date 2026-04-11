@@ -4,7 +4,7 @@ Allow: /
 
 Sitemap: https://eitc.fazr.co.kr/sitemap.xml
 
-#DaumWebMasterTool:b979e8fef22bd4b4d035470a8cd2edbce83aa85df7ce7cacae92f59f191e7561:VAuOcEy3Zx2FHdO4eIqg/g==
+#DaumWebMasterTool:8aabd0e8890c37e205afb9aa99bd0fd448aced4e8d548a006b0b4f02661db12b:nSYtUgyINYWMlHzlf2FO4Q==
 `;
 
   return new Response(body, {

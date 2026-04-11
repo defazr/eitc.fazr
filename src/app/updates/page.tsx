@@ -52,7 +52,7 @@ export default function UpdatesPage() {
             </Link>
             {index === 1 && (
               <div className="my-6">
-                <AdSlot slot="9379409604" format="autorelaxed" minHeight="280px" />
+                <AdSlot slot="2240954488" format="autorelaxed" minHeight="280px" />
               </div>
             )}
           </div>

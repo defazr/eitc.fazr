@@ -172,7 +172,7 @@ export default function HomePage() {
 
       {/* Ad Slot 1 */}
       <section className="max-w-6xl mx-auto px-4 py-4">
-        <AdSlot slot="4106279506" format="horizontal" />
+        <AdSlot slot="5413912733" format="horizontal" />
       </section>
 
       {/* Quick Links */}
@@ -247,6 +247,11 @@ export default function HomePage() {
             </Link>
           ))}
         </div>
+      </section>
+
+      {/* Ad Slot 2 */}
+      <section className="max-w-6xl mx-auto px-4 py-4">
+        <AdSlot slot="6166164738" />
       </section>
 
       {/* Schedule */}
