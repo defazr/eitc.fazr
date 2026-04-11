@@ -25,6 +25,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "ko_KR",
     siteName: "근로·자녀장려금",
+    url: "https://eitc.fazr.co.kr",
     images: [
       {
         url: "/og-default.jpg",
