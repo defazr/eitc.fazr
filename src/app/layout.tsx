@@ -9,6 +9,7 @@ import { ScrollToTopOnNavigation } from "@/components/scroll-to-top-on-navigatio
 import { VignetteCleanup } from "@/components/vignette-cleanup";
 
 const gaId = process.env.NEXT_PUBLIC_GA_ID;
+const adsId = process.env.NEXT_PUBLIC_GOOGLE_ADS_ID;
 
 export const metadata: Metadata = {
   title: {
@@ -86,6 +87,7 @@ export default function RootLayout({
                 function gtag(){dataLayer.push(arguments);}
                 gtag('js', new Date());
                 gtag('config', '${gaId}');
+                ${adsId ? `gtag('config', '${adsId}');` : ""}
               `}
             </Script>
           </>
