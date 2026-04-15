@@ -23,6 +23,7 @@ import { Badge } from "@/components/ui/badge";
 import { DisclaimerBanner } from "@/components/disclaimer-banner";
 import { AdSlot } from "@/components/ad-slot";
 import { ShareButtons } from "@/components/share-buttons";
+import { KakaoChannelButton } from "@/components/kakao-channel-button";
 
 /* ── Form state ── */
 
@@ -556,6 +557,7 @@ export default function CalculatorPage() {
             </Link>
           </div>
           <ShareButtons title="근로·자녀장려금 계산 결과 확인해보세요" />
+          <KakaoChannelButton />
           <div className="mt-6">
             <DisclaimerBanner />
           </div>
