@@ -128,12 +128,20 @@ export default function CalculatorPage() {
     setCalculationResult(result);
     setIsCalculated(true);
 
-    // Google Ads 전환 이벤트 — guard 통과 + 계산 완료 시에만
-    const conversionId = process.env.NEXT_PUBLIC_GOOGLE_ADS_CONVERSION_ID;
-    if (typeof window !== "undefined" && (window as any).gtag && conversionId) {
-      (window as any).gtag("event", "conversion", {
-        send_to: conversionId,
+    // GA4 + Google Ads 이벤트 — guard 통과 + 계산 완료 시에만
+    if (typeof window !== "undefined" && (window as any).gtag) {
+      (window as any).gtag("event", "calculator_click", {
+        event_category: "engagement",
+        event_label: "근로장려금_계산하기",
+        value: 1,
       });
+
+      const conversionId = process.env.NEXT_PUBLIC_GOOGLE_ADS_CONVERSION_ID;
+      if (conversionId) {
+        (window as any).gtag("event", "conversion", {
+          send_to: conversionId,
+        });
+      }
     }
   };
 
