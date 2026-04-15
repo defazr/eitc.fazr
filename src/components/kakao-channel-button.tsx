@@ -1,40 +1,38 @@
 "use client";
 
+import { MessageCircle } from "lucide-react";
+
 export function KakaoChannelButton() {
   const handleClick = () => {
     if (typeof window === "undefined") return;
 
-    const Kakao = (window as any).Kakao;
     const channelId = process.env.NEXT_PUBLIC_KAKAO_CHANNEL_ID;
-    const jsKey = process.env.NEXT_PUBLIC_KAKAO_JS_KEY;
 
-    // 1차 가드: SDK 또는 환경변수 누락
-    if (!Kakao || !channelId || !jsKey) {
+    if (!channelId) {
       alert("잠시 후 다시 시도해주세요");
       return;
     }
 
-    // Fallback init (KakaoInit이 실패했을 경우 대비)
-    if (!Kakao.isInitialized()) {
-      Kakao.init(jsKey);
-    }
-
-    // 2차 가드: Channel 객체 없음
-    if (!Kakao.Channel) {
-      alert("카카오 연결에 실패했습니다");
-      return;
-    }
-
-    // GA4 이벤트 발화
-    if ((window as any).gtag) {
-      (window as any).gtag("event", "kakao_channel_click", {
+    // 추적 이벤트
+    const gtag = (window as any).gtag;
+    if (gtag) {
+      // GA4 이벤트
+      gtag("event", "kakao_channel_click", {
         event_category: "engagement",
         event_label: "calculator_result",
       });
+
+      // Google Ads 전환 이벤트
+      const conversionId = process.env.NEXT_PUBLIC_GOOGLE_ADS_CONVERSION_ID;
+      if (conversionId) {
+        gtag("event", "conversion", {
+          send_to: conversionId,
+        });
+      }
     }
 
-    // 채널 추가 호출
-    Kakao.Channel.addChannel({ channelPublicId: channelId });
+    // 친구 추가 페이지로 이동 (모바일 카카오톡 앱 자동 호출)
+    window.location.href = `https://pf.kakao.com/${channelId}/friend`;
   };
 
   return (
@@ -44,8 +42,9 @@ export function KakaoChannelButton() {
       </p>
       <button
         onClick={handleClick}
-        className="w-full bg-[#FEE500] hover:bg-[#FADA00] text-black font-medium py-3 rounded-md transition-colors"
+        className="w-full bg-[#FEE500] hover:bg-[#FADA00] text-black font-medium py-3 rounded-md transition-colors flex items-center justify-center gap-2"
       >
+        <MessageCircle className="w-5 h-5" />
         5월 신청 시작 놓치지 않기 · 카카오 알림 받기
       </button>
     </div>

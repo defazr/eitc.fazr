@@ -7,7 +7,7 @@ import { Footer } from "@/components/footer";
 import { ScrollTopButton } from "@/components/scroll-top-button";
 import { ScrollToTopOnNavigation } from "@/components/scroll-to-top-on-navigation";
 import { VignetteCleanup } from "@/components/vignette-cleanup";
-import { KakaoInit } from "@/components/kakao-init";
+
 
 const gaId = process.env.NEXT_PUBLIC_GA_ID;
 const adsId = process.env.NEXT_PUBLIC_GOOGLE_ADS_ID;
@@ -93,11 +93,6 @@ export default function RootLayout({
             </Script>
           </>
         )}
-        <Script
-          src="https://t1.kakaocdn.net/kakao_js_sdk/2.7.2/kakao.min.js"
-          strategy="afterInteractive"
-        />
-        <KakaoInit />
         <VignetteCleanup />
         <SkinnyBar />
         <Navigation />
