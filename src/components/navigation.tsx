@@ -76,7 +76,7 @@ export function Navigation() {
         {/* Mobile */}
         <Sheet open={open} onOpenChange={setOpen}>
           <SheetTrigger className="md:hidden">
-            <Button variant="ghost" size="icon" render={<span />}>
+            <Button variant="ghost" size="icon" nativeButton={false} render={<span />}>
               <Menu className="h-5 w-5" />
               <span className="sr-only">메뉴 열기</span>
             </Button>
