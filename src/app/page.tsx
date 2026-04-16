@@ -408,6 +408,11 @@ export default function HomePage() {
       <section className="max-w-6xl mx-auto px-4 pb-12">
         <DisclaimerBanner />
       </section>
+
+      {/* FAZR branding */}
+      <p className="text-xs text-muted-foreground text-center pb-8">
+        FAZR에서 제공하는 근로·자녀장려금 안내 서비스입니다
+      </p>
     </>
   );
 }

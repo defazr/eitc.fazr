@@ -567,6 +567,11 @@ export default function CalculatorPage() {
         </>
       )}
 
+      {/* FAZR branding */}
+      <p className="text-xs text-muted-foreground text-center mt-4">
+        FAZR에서 제공하는 서비스입니다
+      </p>
+
       {/* Nav links */}
       <div className="flex flex-wrap justify-center gap-4 mt-8 text-sm">
         <Link href="/updates" className="text-primary hover:underline">

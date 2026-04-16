@@ -85,7 +85,7 @@ export function Footer() {
 
         <Separator className="my-8" />
         <div className="text-left md:text-center text-xs text-muted-foreground space-y-1 leading-relaxed">
-          <p className="font-medium text-foreground/80">다파라코프</p>
+          <p className="font-medium text-foreground/80">FAZR (다파라코프)</p>
           <p>대표자 : 오석영 | 개인정보보호책임자 : 오석영</p>
           <p>사업자등록번호 : 208-09-27644</p>
           <p>사업장소재지 : 경기도 고양시 일산동구 중앙로 1080, 402호</p>

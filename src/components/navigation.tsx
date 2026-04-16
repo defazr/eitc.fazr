@@ -51,8 +51,9 @@ export function Navigation() {
   return (
     <header className="sticky top-0 z-40 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/80 border-b border-border">
       <div className="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
-        <Link href="/" onClick={handleHomeClick} className="font-bold text-lg text-primary cursor-pointer">
-          근로·자녀장려금
+        <Link href="/" onClick={handleHomeClick} className="flex items-center gap-2 cursor-pointer">
+          <span className="text-xs text-muted-foreground font-medium">FAZR</span>
+          <span className="text-lg font-bold text-primary">근로·자녀장려금</span>
         </Link>
 
         {/* Desktop */}
