@@ -149,6 +149,7 @@ export default function FAQPage() {
       <div className="text-center mb-8">
         <Button
           size="lg"
+          nativeButton={false}
           render={<Link href="/calculator" />}
           className="px-8"
         >

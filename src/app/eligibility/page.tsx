@@ -239,6 +239,7 @@ export default function EligibilityPage() {
                     </p>
                     <Button
                       size="lg"
+                      nativeButton={false}
                       render={<Link href="/calculator" />}
                       className="mt-2"
                     >
@@ -267,6 +268,7 @@ export default function EligibilityPage() {
                     ))}
                     <Button
                       size="lg"
+                      nativeButton={false}
                       render={<Link href="/calculator" />}
                       className="mt-2"
                     >

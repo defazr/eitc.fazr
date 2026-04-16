@@ -59,6 +59,7 @@ export default function NotFound() {
 
       <div className="mt-10">
         <Button
+          nativeButton={false}
           render={<Link href="/" />}
           className="gap-2"
         >

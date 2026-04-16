@@ -134,6 +134,7 @@ export default function HomePage() {
 
           <Button
             size="lg"
+            nativeButton={false}
             render={<Link href="/calculator" />}
             className="text-lg px-8 py-6 shadow-lg bg-[#0369A1] hover:bg-[#0369A1]/90 cursor-pointer transition-all duration-200"
           >
