@@ -93,9 +93,34 @@ export default function CalculatorPage() {
   const isSingle = form.householdType === "single";
   const showCtcInput = form.dependentChildren > 0 && !isSingle;
 
+  /* ── D-Day 계산 ── */
+  const dDay = Math.ceil(
+    (new Date("2026-05-01").getTime() - Date.now()) / (1000 * 60 * 60 * 24)
+  );
+
   /* ── Calculate ── */
 
   const handleCalculate = () => {
+    // 소득 미입력
+    if (form.totalIncome <= 0) {
+      alert("총급여액을 입력해 주세요");
+      document.getElementById("income")?.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+      });
+      return;
+    }
+
+    // 재산 미입력
+    if (form.totalProperty <= 0) {
+      alert("가구원 합산 재산을 입력해 주세요");
+      document.getElementById("asset")?.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+      });
+      return;
+    }
+
     const estimatedProperty =
       form.totalProperty >= 240_000_000
         ? ("over_240m" as const)
@@ -146,12 +171,10 @@ export default function CalculatorPage() {
     }
   };
 
-  const canCalculate = form.totalIncome > 0;
-
   /* ── Render ── */
 
   return (
-    <div className="max-w-2xl mx-auto px-4 py-12">
+    <div className="max-w-2xl mx-auto px-4 py-12 pb-24 md:pb-12">
       {/* Header */}
       <div className="text-center mb-8">
         <h1 className="text-2xl md:text-3xl font-bold">
@@ -161,6 +184,21 @@ export default function CalculatorPage() {
           가구유형, 소득, 재산을 입력하면 예상 장려금을 바로 확인할 수 있습니다
         </p>
       </div>
+
+      {/* D-Day 긴급성 배너 */}
+      <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6 text-center">
+        <p className="text-sm font-semibold text-blue-900">
+          🔔 5월 1일 신청 시작 D-{dDay}
+        </p>
+        <p className="text-xs text-blue-700 mt-1">
+          지금 확인 안 하면 기한 후 신청 시 5% 줄어듭니다
+        </p>
+      </div>
+
+      {/* 입력 기대감 문구 */}
+      <p className="text-sm text-center text-muted-foreground mb-4">
+        입력 3개만 하면 30초 안에 내 예상 금액 확인
+      </p>
 
       {/* Card 1: 가구 유형 */}
       <Card>
@@ -203,6 +241,7 @@ export default function CalculatorPage() {
             </label>
             <div className="relative">
               <Input
+                id="income"
                 type="text"
                 inputMode="numeric"
                 placeholder="예: 25,000,000 (연간 기준)"
@@ -227,6 +266,7 @@ export default function CalculatorPage() {
             </label>
             <div className="relative">
               <Input
+                id="asset"
                 type="text"
                 inputMode="numeric"
                 placeholder="예: 100,000,000"
@@ -374,14 +414,27 @@ export default function CalculatorPage() {
         </label>
       </div>
 
-      {/* Calculate button */}
-      <Button
-        onClick={handleCalculate}
-        className="w-full py-6 text-base mt-6"
-        disabled={!canCalculate}
-      >
-        예상 장려금 계산하기
-      </Button>
+      {/* Calculate button — PC 전용 */}
+      <div className="hidden md:block mt-6">
+        <Button
+          onClick={handleCalculate}
+          size="lg"
+          className="w-full text-lg py-6 font-bold bg-blue-600 hover:bg-blue-700 text-white"
+        >
+          지금 바로 내 금액 확인하기 →
+        </Button>
+      </div>
+
+      {/* Calculate button — 모바일 sticky footer */}
+      <div className="md:hidden fixed bottom-0 left-0 right-0 p-4 bg-white border-t shadow-lg z-50">
+        <Button
+          onClick={handleCalculate}
+          size="lg"
+          className="w-full text-lg py-5 font-bold bg-blue-600 hover:bg-blue-700 text-white"
+        >
+          지금 바로 내 금액 확인하기 →
+        </Button>
+      </div>
 
       {/* ── Result section ── */}
       {isCalculated && eligibilityResult?.status === "blocked" && (
