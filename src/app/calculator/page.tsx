@@ -185,6 +185,16 @@ export default function CalculatorPage() {
         </p>
       </div>
 
+      {/* 자녀장려금 포함 안내 */}
+      <div className="text-center mb-4">
+        <p className="text-sm text-blue-600 font-medium">
+          💡 자녀장려금도 포함됩니다 놓치지 말고 지금 바로 확인하세요
+        </p>
+        <p className="text-xs text-muted-foreground mt-1">
+          최대 100만원 자녀장려금 포함 계산
+        </p>
+      </div>
+
       {/* D-Day 긴급성 배너 */}
       <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6 text-center">
         <p className="text-sm font-semibold text-blue-900">
