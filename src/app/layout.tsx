@@ -96,7 +96,7 @@ export default function RootLayout({
         <Navigation />
         <main className="flex-1 min-h-svh">{children}</main>
         <Footer />
-        {/* <ScrollTopButton /> — 가설 검증용 임시 비활성화 */}
+        <ScrollTopButton />
         <ScrollToTopOnNavigation />
       </body>
     </html>
