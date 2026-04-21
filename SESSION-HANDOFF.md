@@ -2,13 +2,13 @@
 
 > 다음 Claude Code 세션이 이 파일을 먼저 읽고 현재 상태를 파악한다.
 
-## 마지막 세션: 2026-04-18 (세션 6 — 전환률 개선)
+## 마지막 세션: 2026-04-21 (세션 7 — 광고 인프라 안정화)
 
-### 프로젝트 상태: ✅ 라이브 운영 + 전환률 UX 개선 적용
+### 프로젝트 상태: ✅ 라이브 운영 + 광고 로딩 패턴 정비 + 계산기 sticky 앵커 충돌 해결
 
 - **사이트**: https://eitc.fazr.co.kr (라이브)
 - **저장소**: https://github.com/defazr/eitc.fazr.git
-- **최신 commit**: `d654ba8`
+- **최신 commit**: `5858a8d`
 - **배포**: Vercel eitc-fazr, GitHub 자동 배포
 
 ### 기술 스택
@@ -35,6 +35,7 @@
 | PR-4.1 | 544c14d→3a89aa2 | 404 페이지, 301 redirect, 홈 카드, 크로스링크, 카드 문구 정정, 스크롤 UX, og 이미지 3종, 전 페이지 OG/Twitter 메타 완비 |
 | 세션5 | 7b5e35e→6f03502 | Google Ads 전환 추적, GA4 이벤트, 푸터 사업자 정보, 카카오톡 채널 연동 |
 | 세션6 | d654ba8 | 계산기 전환률 개선 — D-Day 배너, 버튼 항상활성화+검증, 모바일 sticky footer, 기대감 문구 |
+| 세션7 | 5858a8d | ads.txt 추가, AdSense next/script 전환, 계산기 sticky `bottom-[100px]` + `pb-52`, Chrome iOS 시크릿 플로팅 수용 |
 
 ### og 이미지 시스템
 
@@ -86,6 +87,16 @@ src/lib/eitc/
 - 버튼 텍스트: "지금 바로 내 금액 확인하기 →"
 - 전환율 목표: 1.8% → 5%+
 
+### 세션7 광고 인프라 안정화 (2026-04-21)
+
+- **ads.txt 추가** (PR #1): `public/ads.txt` — `google.com, pub-7976139023602789, DIRECT, f08c47fec0942fa0`
+- **main `min-h-dvh` → `min-h-svh`** (PR #2): 플로팅 해결엔 효과 없었으나 무해. support.fazr는 `dvh` 사용 중. 현재 svh 유지.
+- **AdSense 스크립트 `next/script` 전환** (PR #3): 원시 `<script async>` → `<Script strategy="afterInteractive">`. `<head>` 제거, `<body>` 이동. support/fuel/calc와 동일 패턴.
+- **계산기 sticky footer 오프셋** (PR #4): `src/app/calculator/page.tsx` sticky `bottom-0` → `bottom-[100px]`, wrapper `pb-24` → `pb-52`. 앵커광고와 sticky CTA 둘 다 정상 노출.
+- **Chrome iOS 시크릿 플로팅**: 기본 모드 정상, 시크릿만 문제. 코드 이슈 아닌 Chrome iOS WebKit quirk로 수용. 실사용자 영향 미미.
+- **가설 검증 기록** (효과 없음, 모두 원복): marquee OFF (`073d3e2`), ScrollTopButton OFF (`27e16c9`), AdSlot format rectangle (`7e0adc2` → 원복 `5858a8d`).
+- **support.fazr 라이브 HTML 비교로 진단**: eitc는 support에서 복제된 사이트(`808b0d6`). 구조 diff로 범인 후보 좁힘.
+
 ### 다음 작업 (PR-5 백로그, GSC/네이버 데이터 보고 결정)
 
 필수 3개:
@@ -102,6 +113,12 @@ src/lib/eitc/
 - [x] 네이버 서치어드바이저 등록
 - [x] 다음 웹마스터도구 등록
 - [x] AdSense 사이트 추가
+- [x] ads.txt 추가 (2026-04-21)
+- [ ] AdSense 콘솔 ads.txt "인증됨" 확인 (수 시간~1일 소요)
 - [ ] 전환율 모니터링 (4/18~4/20 vs 이전 4일)
-- [ ] 모바일/PC 실기기 테스트 (세션6 변경 확인)
+- [ ] 모바일/PC 실기기 테스트 (세션6·7 변경 확인)
 - [ ] 네이버 데이터 수집 → PR-5 착수 결정
+
+### 알려진 한계 (수용됨)
+
+- **Chrome iOS 시크릿 모드 앵커광고 플로팅**: 코드로 해결 불가. 실사용자 영향 미미 (99%+ 기본 모드). 세션7 진단 완료, 수정 보류.
