@@ -174,7 +174,7 @@ export default function CalculatorPage() {
   /* ── Render ── */
 
   return (
-    <div className="max-w-2xl mx-auto px-4 py-12 pb-24 md:pb-12">
+    <div className="max-w-2xl mx-auto px-4 py-12 pb-52 md:pb-12">
       {/* Header */}
       <div className="text-center mb-8">
         <h1 className="text-2xl md:text-3xl font-bold">
@@ -436,7 +436,7 @@ export default function CalculatorPage() {
       </div>
 
       {/* Calculate button — 모바일 sticky footer */}
-      <div className="md:hidden fixed bottom-0 left-0 right-0 p-4 bg-white border-t shadow-lg z-50">
+      <div className="md:hidden fixed bottom-[100px] left-0 right-0 p-4 bg-white border-t shadow-lg z-50">
         <Button
           onClick={handleCalculate}
           size="lg"
