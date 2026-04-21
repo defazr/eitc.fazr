@@ -303,7 +303,7 @@ export default function EligibilityPage() {
 
       {/* Ad slot */}
       <div className="my-8">
-        <AdSlot slot="8057830900" format="rectangle" minHeight="280px" />
+        <AdSlot slot="8057830900" format="auto" minHeight="280px" />
       </div>
 
       <DisclaimerBanner />

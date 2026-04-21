@@ -253,7 +253,7 @@ export default function HomePage() {
 
       {/* Ad Slot 2 */}
       <section className="max-w-6xl mx-auto px-4 py-4">
-        <AdSlot slot="6166164738" format="rectangle" />
+        <AdSlot slot="6166164738" />
       </section>
 
       {/* Schedule */}
