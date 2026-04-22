@@ -271,4 +271,13 @@ export const FAQ_ITEMS: FaqItem[] = [
 [→ 내 예상 금액 계산하기](/calculator)`,
     category: "special",
   },
+  // ── application (Q16) ──
+  {
+    id: "q16",
+    question: "Q16. 근로장려금을 신청하지 않았는데 받을 수 있나요?",
+    answer: `정기신청(5월 1일~6월 1일)을 놓쳤더라도 6월 2일부터 12월 1일까지 기한 후 신청이 가능합니다. 단, 산정액의 95%만 지급되고 지급일도 4개월 정도 지연됩니다. 12월 2일 이후에는 해당 연도 신청이 불가하니 늦어도 12월 1일까지는 꼭 신청하세요.
+
+자세한 절차와 손해 금액은 [기한 후 신청 가이드](/updates/late-application-guide) 글에서 확인할 수 있습니다.`,
+    category: "application",
+  },
 ];
