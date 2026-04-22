@@ -82,7 +82,7 @@ export default function CalculatorPage() {
   const [eligibilityResult, setEligibilityResult] =
     useState<EligibilityCheckResult | null>(null);
   const resultRef = useRef<HTMLDivElement>(null);
-  const formRef = useRef<HTMLDivElement>(null);
+
 
   const updateForm = <K extends keyof FormState>(
     key: K,
@@ -180,25 +180,10 @@ export default function CalculatorPage() {
     }, 100);
   };
 
-  const handleReset = () => {
-    formRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
-
-    if (typeof window !== "undefined" && (window as any).gtag) {
-      (window as any).gtag("event", "calculator_reset");
-    }
-
-    setTimeout(() => {
-      setForm(INITIAL_FORM);
-      setIsCalculated(false);
-      setCalculationResult(null);
-      setEligibilityResult(null);
-    }, 120);
-  };
-
   /* ── Render ── */
 
   return (
-    <div className="max-w-2xl mx-auto px-4 py-12 pb-52 md:pb-12">
+    <div className="max-w-2xl mx-auto px-4 py-12">
       {/* Header */}
       <div className="text-center mb-8">
         <h1 className="text-2xl md:text-3xl font-bold">
@@ -235,7 +220,6 @@ export default function CalculatorPage() {
       </p>
 
       {/* Card 1: 가구 유형 */}
-      <div ref={formRef} />
       <Card>
         <CardHeader>
           <CardTitle className="text-lg">가구 유형</CardTitle>
@@ -459,19 +443,6 @@ export default function CalculatorPage() {
           계산하기
         </Button>
       </div>
-
-      {/* Reset button — 모바일 sticky footer (결과 표시 중엔 숨김) */}
-      {!isCalculated && (
-      <div className="md:hidden fixed bottom-[100px] left-0 right-0 p-4 bg-white border-t shadow-lg z-50">
-        <Button
-          onClick={handleReset}
-          size="lg"
-          className="w-full text-lg py-5 font-bold bg-blue-600 hover:bg-blue-700 text-white"
-        >
-          지금 바로 내 금액 확인하기 →
-        </Button>
-      </div>
-      )}
 
       {/* ── Result section ── */}
       <div ref={resultRef} />
