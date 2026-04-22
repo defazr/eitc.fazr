@@ -129,7 +129,7 @@ export default function EligibilityPage() {
           <ClipboardCheck className="h-8 w-8 text-primary" />
         </div>
         <h1 className="text-2xl md:text-3xl font-bold">
-          근로·자녀장려금 대상 확인
+          근로장려금 대상자 확인 — 5문항 자격 체크
         </h1>
         <p className="text-muted-foreground mt-2">
           5가지 질문에 답하면 수급 자격 여부를 바로 확인할 수 있습니다
