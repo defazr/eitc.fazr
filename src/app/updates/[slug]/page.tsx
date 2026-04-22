@@ -82,6 +82,25 @@ export default async function UpdateDetailPage({ params }: Props) {
           }),
         }}
       />
+      {post.faq && post.faq.length > 0 && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "FAQPage",
+              mainEntity: post.faq.map((item) => ({
+                "@type": "Question",
+                name: item.question,
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: item.answer,
+                },
+              })),
+            }),
+          }}
+        />
+      )}
       <Link
         href="/updates"
         className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground mb-6"
