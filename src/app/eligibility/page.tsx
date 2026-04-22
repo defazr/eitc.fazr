@@ -110,7 +110,7 @@ export default function EligibilityPage() {
     };
     setResult(checkEligibility(input));
     setTimeout(() => {
-      resultRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+      resultRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
     }, 100);
   }
 

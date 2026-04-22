@@ -142,7 +142,7 @@ export default function CalculatorPage() {
       setCalculationResult(null);
       setIsCalculated(true);
       setTimeout(() => {
-        resultRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+        resultRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
       }, 100);
       return;
     }
@@ -175,8 +175,23 @@ export default function CalculatorPage() {
     }
 
     setTimeout(() => {
-      resultRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+      resultRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
     }, 100);
+  };
+
+  const handleReset = () => {
+    document.documentElement.scrollTo({ top: 0, behavior: "smooth" });
+
+    if (typeof window !== "undefined" && (window as any).gtag) {
+      (window as any).gtag("event", "calculator_reset");
+    }
+
+    setTimeout(() => {
+      setForm(INITIAL_FORM);
+      setIsCalculated(false);
+      setCalculationResult(null);
+      setEligibilityResult(null);
+    }, 120);
   };
 
   /* ── Render ── */
@@ -432,21 +447,21 @@ export default function CalculatorPage() {
         </label>
       </div>
 
-      {/* Calculate button — PC 전용 */}
-      <div className="hidden md:block mt-6">
+      {/* Calculate button — PC + 모바일 공통 */}
+      <div className="mt-6">
         <Button
           onClick={handleCalculate}
           size="lg"
           className="w-full text-lg py-6 font-bold bg-blue-600 hover:bg-blue-700 text-white"
         >
-          지금 바로 내 금액 확인하기 →
+          계산하기
         </Button>
       </div>
 
-      {/* Calculate button — 모바일 sticky footer */}
+      {/* Reset button — 모바일 sticky footer */}
       <div className="md:hidden fixed bottom-[100px] left-0 right-0 p-4 bg-white border-t shadow-lg z-50">
         <Button
-          onClick={handleCalculate}
+          onClick={handleReset}
           size="lg"
           className="w-full text-lg py-5 font-bold bg-blue-600 hover:bg-blue-700 text-white"
         >
