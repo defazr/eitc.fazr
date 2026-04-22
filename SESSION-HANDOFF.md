@@ -2,13 +2,14 @@
 
 > 다음 Claude Code 세션이 이 파일을 먼저 읽고 현재 상태를 파악한다.
 
-## 마지막 세션: 2026-04-21 (세션 7 — 광고 인프라 안정화)
+## 마지막 세션: 2026-04-22 (세션 8 — /updates 신규 글 5개 추가 진행 중)
 
-### 프로젝트 상태: ✅ 라이브 운영 + 광고 로딩 패턴 정비 + 계산기 sticky 앵커 충돌 해결
+### 프로젝트 상태: 🔧 글 2/5 완료, 커밋 대기 (5개 모은 후 한 번에 push)
 
 - **사이트**: https://eitc.fazr.co.kr (라이브)
 - **저장소**: https://github.com/defazr/eitc.fazr.git
-- **최신 commit**: `5858a8d`
+- **최신 commit (origin)**: `07f4c28`
+- **로컬 변경**: updates.ts에 글 2개 추가 (미커밋)
 - **배포**: Vercel eitc-fazr, GitHub 자동 배포
 
 ### 기술 스택
@@ -36,6 +37,7 @@
 | 세션5 | 7b5e35e→6f03502 | Google Ads 전환 추적, GA4 이벤트, 푸터 사업자 정보, 카카오톡 채널 연동 |
 | 세션6 | d654ba8 | 계산기 전환률 개선 — D-Day 배너, 버튼 항상활성화+검증, 모바일 sticky footer, 기대감 문구 |
 | 세션7 | 5858a8d | ads.txt 추가, AdSense next/script 전환, 계산기 sticky `bottom-[100px]` + `pb-52`, Chrome iOS 시크릿 플로팅 수용 |
+| 세션8 | (미커밋) | /updates 신규 글 5개 추가 중 — 2/5 완료 (property-seizure-250, late-application-guide) |
 
 ### og 이미지 시스템
 
@@ -97,15 +99,26 @@ src/lib/eitc/
 - **가설 검증 기록** (효과 없음, 모두 원복): marquee OFF (`073d3e2`), ScrollTopButton OFF (`27e16c9`), AdSlot format rectangle (`7e0adc2` → 원복 `5858a8d`).
 - **support.fazr 라이브 HTML 비교로 진단**: eitc는 support에서 복제된 사이트(`808b0d6`). 구조 diff로 범인 후보 좁힘.
 
-### 다음 작업 (PR-5 백로그, GSC/네이버 데이터 보고 결정)
+### 세션8 — /updates 신규 글 5개 (2026-04-22, 진행 중)
 
-필수 3개:
+| # | slug | 제목 | 상태 |
+|---|------|------|------|
+| 1 | `property-seizure-250` | 압류금지 250만원 상향 | ✅ 빌드 통과 |
+| 2 | `late-application-guide` | 미신청 기한 후 신청 | ✅ 빌드 통과 (날짜 수정 완료: 11/30→12/1) |
+| 3 | `hometax-application-guide` | 홈택스 신청 방법 | ⏳ GPT 작성 중 |
+| 4 | `auto-application-system` | 자동신청 제도 | ⏳ 대기 |
+| 5 | `payment-check-guide` | 입금일 조회 방법 | ⏳ 대기 |
+
+- 글 5개 완성 후 한 번에 커밋+푸시 예정
+- JSON-LD (Article schema) 글 완료 후 일괄 추가 예정
+- 중요: 기한 후 신청 마감 = **12월 1일** (11/30 아님, 국세청 공식)
+- 참고: 홈택스 4/22 현재 신청 메뉴 비활성 ("지금은 장려금 신청기간이 아닙니다")
+
+### 이후 백로그
+
 1. FAQ Q16 "미신청" (월 22,200)
 2. FAQ Q17 "홈택스" (월 4,500+)
 3. /eligibility 메타 수정 "대상자 확인" (월 4,400+)
-
-선택 1개:
-4. Update 신규 1편 "지급일 총정리" (월 5,000+)
 
 ### 운영 체크리스트 (사용자 직접)
 

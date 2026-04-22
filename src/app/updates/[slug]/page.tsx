@@ -57,6 +57,31 @@ export default async function UpdateDetailPage({ params }: Props) {
 
   return (
     <div className="max-w-3xl mx-auto px-4 py-12">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Article",
+            headline: post.title,
+            description: post.description,
+            datePublished: post.date,
+            author: {
+              "@type": "Organization",
+              name: "FAZR",
+            },
+            publisher: {
+              "@type": "Organization",
+              name: "FAZR",
+              url: "https://eitc.fazr.co.kr",
+            },
+            mainEntityOfPage: {
+              "@type": "WebPage",
+              "@id": `https://eitc.fazr.co.kr/updates/${post.slug}`,
+            },
+          }),
+        }}
+      />
       <Link
         href="/updates"
         className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground mb-6"
