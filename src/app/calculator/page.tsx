@@ -143,7 +143,7 @@ export default function CalculatorPage() {
       setCalculationResult(null);
       setIsCalculated(true);
       setTimeout(() => {
-        resultRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+        resultRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
       }, 100);
       return;
     }
@@ -176,7 +176,7 @@ export default function CalculatorPage() {
     }
 
     setTimeout(() => {
-      resultRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+      resultRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
     }, 100);
   };
 
