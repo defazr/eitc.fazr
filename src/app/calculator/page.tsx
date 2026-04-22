@@ -460,7 +460,8 @@ export default function CalculatorPage() {
         </Button>
       </div>
 
-      {/* Reset button — 모바일 sticky footer */}
+      {/* Reset button — 모바일 sticky footer (결과 표시 중엔 숨김) */}
+      {!isCalculated && (
       <div className="md:hidden fixed bottom-[100px] left-0 right-0 p-4 bg-white border-t shadow-lg z-50">
         <Button
           onClick={handleReset}
@@ -470,6 +471,7 @@ export default function CalculatorPage() {
           지금 바로 내 금액 확인하기 →
         </Button>
       </div>
+      )}
 
       {/* ── Result section ── */}
       <div ref={resultRef} />
