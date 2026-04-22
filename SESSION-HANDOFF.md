@@ -2,13 +2,13 @@
 
 > 다음 Claude Code 세션이 이 파일을 먼저 읽고 현재 상태를 파악한다.
 
-## 마지막 세션: 2026-04-22 (세션 8 — PR-5 콘텐츠 5편 + JSON-LD 완료)
+## 마지막 세션: 2026-04-22 (세션 8 — PR-5 + SEO + UX 대수술)
 
-### 프로젝트 상태: ✅ 라이브 운영 + 글 10편 + Article/FAQPage JSON-LD
+### 프로젝트 상태: ✅ 라이브 운영 + 글 10편 + JSON-LD + Calculator UX 개선
 
 - **사이트**: https://eitc.fazr.co.kr (라이브)
 - **저장소**: https://github.com/defazr/eitc.fazr.git
-- **최신 commit**: `44594b6`
+- **최신 commit**: `1573165`
 - **배포**: Vercel eitc-fazr, GitHub 자동 배포
 
 ### 기술 스택
@@ -32,63 +32,66 @@
 | PR-2 | a204dd0 | calc.fazr 엔진 복사, wrapper/guard/flags, 59 테스트 |
 | PR-3 | b0a4f5b | calculator+eligibility 페이지 재구현 |
 | PR-4 | 000dfe0→a2e0ae3 | 콘텐츠 투입, FAQ 15개, Updates 5편, AdSense 슬롯 7개, 검색엔진 키 |
-| PR-4.1 | 544c14d→3a89aa2 | 404 페이지, 301 redirect, 홈 카드, 크로스링크, 카드 문구 정정, 스크롤 UX, og 이미지 3종, 전 페이지 OG/Twitter 메타 완비 |
-| 세션5 | 7b5e35e→6f03502 | Google Ads 전환 추적, GA4 이벤트, 푸터 사업자 정보, 카카오톡 채널 연동 |
-| 세션6 | d654ba8 | 계산기 전환률 개선 — D-Day 배너, 버튼 항상활성화+검증, 모바일 sticky footer, 기대감 문구 |
-| 세션7 | 5858a8d | ads.txt 추가, AdSense next/script 전환, 계산기 sticky `bottom-[100px]` + `pb-52`, Chrome iOS 시크릿 플로팅 수용 |
-| 세션8 | 06d4499→44594b6 | PR-5: 글 5편 추가, 크로스링크, 날짜 수정(11/30→12/1), 최신글 정렬, h1 중복 제거, Article + FAQPage JSON-LD |
+| PR-4.1 | 544c14d→3a89aa2 | 404 페이지, 301 redirect, 홈 카드, 크로스링크, og 이미지 3종 |
+| 세션5 | 7b5e35e→6f03502 | Google Ads 전환 추적, GA4 이벤트, 푸터 사업자 정보, 카카오톡 채널 |
+| 세션6 | d654ba8 | 계산기 전환률 개선 — D-Day 배너, 버튼 항상활성화, 기대감 문구 |
+| 세션7 | 5858a8d | ads.txt 추가, AdSense next/script 전환, Chrome iOS 시크릿 플로팅 수용 |
+| 세션8 | 06d4499→1573165 | PR-5 글 5편 + JSON-LD + SEO + Calculator UX 대수술 (아래 상세) |
 
-### /updates 글 목록 (날짜 내림차순 자동 정렬)
+### 세션8 상세 (2026-04-22)
 
-| date | slug | 제목 | faq |
-|---|---|---|---|
-| 2026-04-22 | property-seizure-250 | 압류금지 250만원 상향 | 5 |
-| 2026-04-22 | late-application-guide | 미신청 기한 후 신청 | 6 |
-| 2026-04-22 | hometax-application-guide | 홈택스 신청 가이드 | 6 |
-| 2026-04-22 | auto-application-system | 자동신청 제도 | 6 |
-| 2026-04-22 | payment-check-guide | 입금일 조회 | 6 |
-| 2026-04-11 | 2026-application-period | 신청기간 총정리 | - |
-| 2026-04-11 | 2026-child-tax-credit-guide | 자녀장려금 가이드 | - |
-| 2026-04-11 | 2026-payment-date | 지급일 정리 | - |
-| 2026-04-11 | property-threshold-explained | 재산 기준 정리 | - |
-| 2026-04-11 | child-tax-credit-deduction | 자녀세액공제 중복 차감 | - |
+**PR-5 콘텐츠:**
+- 글 5편 (property-seizure-250, late-application-guide, hometax-application-guide, auto-application-system, payment-check-guide)
+- Article JSON-LD (전 글) + FAQPage JSON-LD (신규 5편, 29개 Q/A)
+- 크로스링크, 날짜 수정(11/30→12/1), 중복 h1 제거, 날짜 내림차순 정렬
 
-### /updates 시스템 구조
+**SEO:**
+- /eligibility 메타 + H1 → "대상자 확인" 키워드 타겟
+- FAQ Q16 "미신청" 추가 (16개로 증가)
 
-- 콘텐츠: `src/data/updates.ts` (TS 데이터 파일)
-- 인터페이스: `UpdatePost { slug, title, description, date, content, faq? }`
-- 타입 안전: `UPDATE_SLUGS` 상수 배열
+**Calculator UX:**
+- "계산하기" 버튼 신규 (입력 폼 아래, PC+모바일 공통)
+- 계산 완료 → resultRef 자동 스크롤 (block: "start")
+- **모바일 sticky footer 완전 제거** (결과 가림 + 역할 중복)
+- handleReset, formRef 삭제
+
+**Eligibility UX:**
+- 확인하기 → 결과 카드 자동 스크롤 (block: "center")
+
+**스크롤:**
+- ScrollToTopOnNavigation 컴포넌트 제거 (support.fazr에 없음, Next.js 기본 동작)
+
+### Calculator 현재 구조
+
+```
+입력 폼 (가구유형 → 소득 → 재산 → 신청유형 → 체크박스)
+  ↓
+[계산하기] 버튼 (PC+모바일 공통, handleCalculate)
+  ↓
+결과 영역 (ref={resultRef}, 자동 스크롤 block:"start")
+  - 예상 수급 대상 / 조건부 / 차단 카드
+  - 상세 결과표
+  - 공유 버튼
+  - 카카오 채널 버튼
+  - 면책 배너
+```
+
+- ~~모바일 sticky footer~~ **삭제됨** — 복구 금지
+- ~~ScrollToTopOnNavigation~~ **삭제됨** — support.fazr와 동일
+
+### /updates 시스템
+
+- 콘텐츠: `src/data/updates.ts` — `UpdatePost { slug, title, description, date, content, faq? }`
 - 정렬: `.sort((a, b) => b.date.localeCompare(a.date))` — 최신글 상단
 - **content에 # h1 넣지 말 것** — page.tsx가 title을 h1으로 렌더링
 - 광고: 목록 2번째 뒤 `2240954488`, 상세 본문 전 `6086273688`
+- JSON-LD: Article (전 글) + FAQPage (faq 필드 있는 글만 조건부)
 
-### JSON-LD 구조
+### FAQ
 
-| 페이지 | Article | FAQPage |
-|---|---|---|
-| /faq | ❌ | ✅ 15개 (기존) |
-| /updates/[slug] 기존 5편 | ✅ | ❌ |
-| /updates/[slug] 신규 5편 | ✅ | ✅ 29개 |
-
-### og 이미지 시스템
-
-| 페이지 | 이미지 | og:type |
-|---|---|---|
-| 홈 (글로벌) | /og-default.jpg | website |
-| /calculator | /og-calculator.jpg | website |
-| /eligibility, /faq, /updates, /updates/[slug] | /og-guide.jpg | website/article |
-
-### 엔진 구조 (src/lib/eitc/)
-
-```
-src/lib/eitc/
-├─ engine.ts        ← calc.fazr eitcCtc.ts 복사 (수정 금지)
-├─ wrapper.ts       ← 자녀세액공제 차감 + guardInput (engine 유일 import)
-├─ eligibilityGuard.ts ← UI 차단 (engine 미사용)
-├─ flags.ts         ← feature flags (반기/장애인/bypass)
-├─ index.ts         ← barrel (engine 직접 노출 차단)
-└─ __tests__/       ← 6파일 61테스트
-```
+- 파일: `src/data/faq.ts` — `FaqItem { id, question, answer, category }`
+- 총 16개 (Q1-Q16), FAQPage JSON-LD 자동 반영
+- Q16: 미신청 기한 후 신청 (category: application)
 
 ### 핵심 규칙
 
@@ -96,32 +99,30 @@ src/lib/eitc/
 2. **디자인 불변** — shadcn/ui 기존만, 신규 컴포넌트/색상 금지
 3. **콘텐츠 1:1 복사** — content v1.1.md에서, 수치·문장 변경 금지
 4. **body/html 높이 클래스 금지** — iOS 스크롤 버그
-5. calc.fazr 경로: `/Users/dapala.corp/python/root/scripts/calc/calc-fazr`
-6. **환경변수 이름 변경 금지** — `NEXT_PUBLIC_ADSENSE_PUB_ID` (6곳 참조)
-7. **Next.js metadata 병합 함정** — openGraph/twitter 오버라이드 시 글로벌 필드 명시 필수
-8. **VignetteCleanup 건드리지 마라**
-9. **push 전 사용자 확인 필수**
-10. **updates content에 # h1 넣지 말 것** — page.tsx h1과 중복
-11. **기한 후 신청 마감 = 12월 1일** (11/30 아님, 국세청 공식)
+5. **환경변수 이름 변경 금지** — `NEXT_PUBLIC_ADSENSE_PUB_ID` (6곳 참조)
+6. **Next.js metadata 병합 함정** — openGraph/twitter 오버라이드 시 글로벌 필드 명시 필수
+7. **VignetteCleanup 건드리지 마라**
+8. **push 전 사용자 확인 필수**
+9. **updates content에 # h1 넣지 말 것**
+10. **기한 후 신청 마감 = 12월 1일** (11/30 아님)
+11. **calculator sticky footer 삭제됨** — 복구 금지
+12. **ScrollToTopOnNavigation 삭제됨** — Next.js 기본 동작 사용
 
 ### 이후 백로그
 
-1. FAQ Q16 "미신청" (월 22,200)
-2. FAQ Q17 "홈택스" (월 4,500+)
-3. /eligibility 메타 수정 "대상자 확인" (월 4,400+)
+1. FAQ Q17 "홈택스" (후순위, ROI 낮음)
+2. 5월 시즌 모니터링 후 추가 작업 결정
 
 ### 운영 체크리스트 (사용자 직접)
 
-- [x] GSC 색인 요청
-- [x] 네이버 서치어드바이저 등록
-- [x] 다음 웹마스터도구 등록
-- [x] AdSense 사이트 추가
-- [x] ads.txt 추가 (2026-04-21)
-- [ ] 신규 글 5개 GSC/네이버 색인 요청
-- [ ] 리치 결과 테스트 (FAQPage JSON-LD 확인)
+- [x] GSC/네이버/다음 색인 등록
+- [x] AdSense + ads.txt
+- [ ] 신규 글 5개 + Q16 색인 요청
+- [ ] 리치 결과 테스트 (FAQPage JSON-LD)
+- [ ] 모바일 실기기 UX 테스트 (스크롤, 결과 노출)
 - [ ] 전환율 모니터링
 
 ### 알려진 한계 (수용됨)
 
-- **Chrome iOS 시크릿 모드 앵커광고 플로팅**: 코드로 해결 불가. 실사용자 영향 미미 (99%+ 기본 모드). 세션7 진단 완료, 수정 보류.
-- **Cloudflare robots.txt 자동 삽입**: AI Audit 규칙이 robots.txt 앞에 추가됨. 다음 인증 해시는 정상. 무해.
+- **Chrome iOS 시크릿 모드 앵커광고 플로팅**: 코드로 해결 불가. 실사용자 영향 미미.
+- **Cloudflare robots.txt 자동 삽입**: AI Audit 규칙. 다음 인증 정상. 무해.
