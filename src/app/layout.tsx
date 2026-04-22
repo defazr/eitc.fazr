@@ -5,7 +5,7 @@ import { SkinnyBar } from "@/components/skinny-bar";
 import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
 import { ScrollTopButton } from "@/components/scroll-top-button";
-import { ScrollToTopOnNavigation } from "@/components/scroll-to-top-on-navigation";
+
 import { VignetteCleanup } from "@/components/vignette-cleanup";
 
 
@@ -97,7 +97,6 @@ export default function RootLayout({
         <main className="flex-1 min-h-svh">{children}</main>
         <Footer />
         <ScrollTopButton />
-        <ScrollToTopOnNavigation />
       </body>
     </html>
   );
