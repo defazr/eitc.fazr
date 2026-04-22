@@ -4,7 +4,7 @@
  */
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Link from "next/link";
 import { ClipboardCheck, ArrowRight, CheckCircle2, XCircle, AlertTriangle } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -90,6 +90,7 @@ export default function EligibilityPage() {
   });
 
   const [result, setResult] = useState<EligibilityCheckResult | null>(null);
+  const resultRef = useRef<HTMLDivElement>(null);
 
   const allAnswered =
     form.isKorean !== null &&
@@ -108,6 +109,9 @@ export default function EligibilityPage() {
       estimatedProperty: form.estimatedProperty!,
     };
     setResult(checkEligibility(input));
+    setTimeout(() => {
+      resultRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 100);
   }
 
   function handleReset() {
@@ -222,6 +226,7 @@ export default function EligibilityPage() {
       </Card>
 
       {/* Result */}
+      <div ref={resultRef} />
       {result && (
         <div className="mb-8">
           {result.status === "eligible" && (

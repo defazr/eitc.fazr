@@ -4,7 +4,7 @@
  */
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Link from "next/link";
 import {
   calculateEitcWithDeduction,
@@ -81,6 +81,7 @@ export default function CalculatorPage() {
     useState<EitcCtcExtendedResult | null>(null);
   const [eligibilityResult, setEligibilityResult] =
     useState<EligibilityCheckResult | null>(null);
+  const resultRef = useRef<HTMLDivElement>(null);
 
   const updateForm = <K extends keyof FormState>(
     key: K,
@@ -140,6 +141,9 @@ export default function CalculatorPage() {
     if (eligResult.status === "blocked") {
       setCalculationResult(null);
       setIsCalculated(true);
+      setTimeout(() => {
+        resultRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+      }, 100);
       return;
     }
 
@@ -169,6 +173,10 @@ export default function CalculatorPage() {
         });
       }
     }
+
+    setTimeout(() => {
+      resultRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 100);
   };
 
   /* ── Render ── */
@@ -447,6 +455,7 @@ export default function CalculatorPage() {
       </div>
 
       {/* ── Result section ── */}
+      <div ref={resultRef} />
       {isCalculated && eligibilityResult?.status === "blocked" && (
         <Card className="mt-6 border-red-200 bg-red-50">
           <CardContent className="pt-6">
