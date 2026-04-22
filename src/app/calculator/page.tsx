@@ -82,6 +82,7 @@ export default function CalculatorPage() {
   const [eligibilityResult, setEligibilityResult] =
     useState<EligibilityCheckResult | null>(null);
   const resultRef = useRef<HTMLDivElement>(null);
+  const formRef = useRef<HTMLDivElement>(null);
 
   const updateForm = <K extends keyof FormState>(
     key: K,
@@ -180,7 +181,7 @@ export default function CalculatorPage() {
   };
 
   const handleReset = () => {
-    document.documentElement.scrollTo({ top: 0, behavior: "smooth" });
+    formRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
 
     if (typeof window !== "undefined" && (window as any).gtag) {
       (window as any).gtag("event", "calculator_reset");
@@ -234,6 +235,7 @@ export default function CalculatorPage() {
       </p>
 
       {/* Card 1: 가구 유형 */}
+      <div ref={formRef} />
       <Card>
         <CardHeader>
           <CardTitle className="text-lg">가구 유형</CardTitle>
