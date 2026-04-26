@@ -303,6 +303,17 @@ export default function EligibilityPage() {
               </CardContent>
             </Card>
           )}
+
+          {(result.status === "eligible" || result.status === "reduced") && (
+            <div className="mt-4 text-center">
+              <Link
+                href="/updates/hometax-application-guide"
+                className="inline-block text-blue-600 hover:underline font-medium"
+              >
+                👉 지금 바로 신청 방법 확인하기 →
+              </Link>
+            </div>
+          )}
         </div>
       )}
 
@@ -310,6 +321,22 @@ export default function EligibilityPage() {
       <div className="my-8">
         <AdSlot slot="8057830900" format="auto" minHeight="280px" />
       </div>
+
+      <section className="mt-8 pt-6 border-t">
+        <h3 className="text-lg font-semibold mb-3">함께 보면 좋은 정보</h3>
+        <ul className="space-y-2 text-sm">
+          <li>
+            <Link href="/updates/hometax-application-guide" className="text-blue-600 hover:underline">
+              → 홈택스 근로장려금 신청 — 5월 1일 시작 전 미리 준비할 것
+            </Link>
+          </li>
+          <li>
+            <Link href="/updates/late-application-guide" className="text-blue-600 hover:underline">
+              → 근로장려금 미신청 시 어떻게 되나 — 12월 1일 기한 후 신청 방법
+            </Link>
+          </li>
+        </ul>
+      </section>
 
       <DisclaimerBanner />
     </div>

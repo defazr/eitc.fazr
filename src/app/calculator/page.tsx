@@ -618,6 +618,16 @@ export default function CalculatorPage() {
               자격 요건 다시 확인
             </Link>
           </div>
+          <section className="mt-8 pt-6 border-t">
+            <h3 className="text-lg font-semibold mb-3">신청 준비하기</h3>
+            <ul className="space-y-2 text-sm">
+              <li>
+                <Link href="/updates/hometax-application-guide" className="text-blue-600 hover:underline">
+                  → 홈택스 근로장려금 신청 — 5월 1일 시작 전 미리 준비할 것
+                </Link>
+              </li>
+            </ul>
+          </section>
           <ShareButtons title="근로·자녀장려금 계산 결과 확인해보세요" />
           <KakaoChannelButton />
           <div className="mt-6">
