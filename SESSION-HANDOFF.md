@@ -2,13 +2,13 @@
 
 > 다음 Claude Code 세션이 이 파일을 먼저 읽고 현재 상태를 파악한다.
 
-## 마지막 세션: 2026-04-22 (세션 8 — PR-5 + SEO + UX 대수술)
+## 마지막 세션: 2026-04-26 (세션 9 — Cloudflare 차단 해결 + 내부링크 보강)
 
-### 프로젝트 상태: ✅ 라이브 운영 + 글 10편 + JSON-LD + Calculator UX 개선
+### 프로젝트 상태: ✅ 라이브 운영 + Cloudflare 차단 해제 + 색인 요청 완료
 
 - **사이트**: https://eitc.fazr.co.kr (라이브)
 - **저장소**: https://github.com/defazr/eitc.fazr.git
-- **최신 commit**: `1573165`
+- **최신 commit**: `f40d575`
 - **배포**: Vercel eitc-fazr, GitHub 자동 배포
 
 ### 기술 스택
@@ -36,30 +36,22 @@
 | 세션5 | 7b5e35e→6f03502 | Google Ads 전환 추적, GA4 이벤트, 푸터 사업자 정보, 카카오톡 채널 |
 | 세션6 | d654ba8 | 계산기 전환률 개선 — D-Day 배너, 버튼 항상활성화, 기대감 문구 |
 | 세션7 | 5858a8d | ads.txt 추가, AdSense next/script 전환, Chrome iOS 시크릿 플로팅 수용 |
-| 세션8 | 06d4499→1573165 | PR-5 글 5편 + JSON-LD + SEO + Calculator UX 대수술 (아래 상세) |
+| 세션8 | 06d4499→1573165 | PR-5 글 5편 + JSON-LD + SEO + Calculator UX 대수술 |
+| 세션9 | f40d575 | Cloudflare ASN 차단 해결 + 내부링크 보강 (아래 상세) |
 
-### 세션8 상세 (2026-04-22)
+### 세션9 상세 (2026-04-26)
 
-**PR-5 콘텐츠:**
-- 글 5편 (property-seizure-250, late-application-guide, hometax-application-guide, auto-application-system, payment-check-guide)
-- Article JSON-LD (전 글) + FAQPage JSON-LD (신규 5편, 29개 Q/A)
-- 크로스링크, 날짜 수정(11/30→12/1), 중복 h1 제거, 날짜 내림차순 정렬
+**Cloudflare ASN 차단 발견/해결:**
+- Cloudflare WAF에서 ASN 15169(Google) 차단 → Googlebot 403 → 신규 글 5개 색인 불가
+- 사용자가 Cloudflare WAF 규칙 수정하여 차단 해제
+- curl 검증: Googlebot UA + 네이버봇(Yeti) UA → 6개 URL 전부 HTTP 200
+- GSC 5개 URL 색인 요청 + sitemap 재제출 완료
+- 4/27~28 재크롤링 대기 → 5/1 시즌 진입 목표
 
-**SEO:**
-- /eligibility 메타 + H1 → "대상자 확인" 키워드 타겟
-- FAQ Q16 "미신청" 추가 (16개로 증가)
-
-**Calculator UX:**
-- "계산하기" 버튼 신규 (입력 폼 아래, PC+모바일 공통)
-- 계산 완료 → resultRef 자동 스크롤 (block: "start")
-- **모바일 sticky footer 완전 제거** (결과 가림 + 역할 중복)
-- handleReset, formRef 삭제
-
-**Eligibility UX:**
-- 확인하기 → 결과 카드 자동 스크롤 (block: "center")
-
-**스크롤:**
-- ScrollToTopOnNavigation 컴포넌트 제거 (support.fazr에 없음, Next.js 기본 동작)
+**내부링크 보강 (`f40d575`):**
+- hometax-application-guide: "안내문 받았다면 이렇게 진행하세요" 섹션 추가
+- /eligibility: eligible/reduced 결과에 "신청 방법 확인하기" CTA + 하단 "함께 보면 좋은 정보"
+- /calculator: 계산 결과 하단 "신청 준비하기" 섹션
 
 ### Calculator 현재 구조
 
@@ -71,6 +63,7 @@
 결과 영역 (ref={resultRef}, 자동 스크롤 block:"start")
   - 예상 수급 대상 / 조건부 / 차단 카드
   - 상세 결과표
+  - "신청 준비하기" 내부링크 (hometax-application-guide)  ← NEW
   - 공유 버튼
   - 카카오 채널 버튼
   - 면책 배너
@@ -78,6 +71,24 @@
 
 - ~~모바일 sticky footer~~ **삭제됨** — 복구 금지
 - ~~ScrollToTopOnNavigation~~ **삭제됨** — support.fazr와 동일
+
+### Eligibility 현재 구조
+
+```
+5문항 체크리스트
+  ↓
+[확인하기] 버튼
+  ↓
+결과 카드 (eligible/reduced/blocked)
+  - eligible/reduced → "신청 방법 확인하기" CTA  ← NEW
+  - blocked → CTA 미표시
+  ↓
+광고 슬롯
+  ↓
+"함께 보면 좋은 정보" 내부링크  ← NEW
+  ↓
+면책 배너
+```
 
 ### /updates 시스템
 
@@ -111,18 +122,31 @@
 ### 이후 백로그
 
 1. FAQ Q17 "홈택스" (후순위, ROI 낮음)
-2. 5월 시즌 모니터링 후 추가 작업 결정
+2. Cloudflare verified bots 허용 규칙 (선택, 시즌 후)
+3. support.fazr → eitc.fazr 백링크 1~2개
+4. 5월 시즌 모니터링 후 추가 작업 결정
 
 ### 운영 체크리스트 (사용자 직접)
 
 - [x] GSC/네이버/다음 색인 등록
 - [x] AdSense + ads.txt
-- [ ] 신규 글 5개 + Q16 색인 요청
-- [ ] 리치 결과 테스트 (FAQPage JSON-LD)
-- [ ] 모바일 실기기 UX 테스트 (스크롤, 결과 노출)
+- [x] Cloudflare ASN 차단 해제
+- [x] 신규 글 5개 GSC 색인 요청
+- [x] sitemap 재제출
+- [ ] 4/29 데이터 점검 (GSC 색인, 노출/클릭, 네이버, 광고 전환, 카톡)
+- [ ] 리치 결과 테스트 (FAQPage JSON-LD 확인)
 - [ ] 전환율 모니터링
 
 ### 알려진 한계 (수용됨)
 
 - **Chrome iOS 시크릿 모드 앵커광고 플로팅**: 코드로 해결 불가. 실사용자 영향 미미.
 - **Cloudflare robots.txt 자동 삽입**: AI Audit 규칙. 다음 인증 정상. 무해.
+
+### 일정
+
+```
+4/27~28 — 절대 건드리지 말 것 (재크롤링 대기)
+4/29 (수) — 데이터 점검
+4/30 (목) — D-1 점검
+5/1 (금) — 시즌 진입
+```
