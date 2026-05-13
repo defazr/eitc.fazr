@@ -2,13 +2,13 @@
 
 > 다음 Claude Code 세션이 이 파일을 먼저 읽고 현재 상태를 파악한다.
 
-## 마지막 세션: 2026-04-27 (세션 10 — 세무서 데이터 133개 + Vercel 빌드 스킵)
+## 마지막 세션: 2026-05-13 (세션 11 — Canonical URL 정규화)
 
-### 프로젝트 상태: 라이브 운영 + 5/8 페이지 작업 준비 완료
+### 프로젝트 상태: 라이브 운영 + Canonical 배포 완료, 검색엔진 반영 대기
 
 - **사이트**: https://eitc.fazr.co.kr (라이브)
 - **저장소**: https://github.com/defazr/eitc.fazr.git
-- **최신 commit**: `b0aeb52`
+- **최신 commit**: `aeb2eec` (PR #5 머지)
 - **배포**: Vercel eitc-fazr, GitHub 자동 배포
 - **Vercel Ignored Build Step**: .md만 변경 시 빌드 스킵 설정됨
 
@@ -23,7 +23,7 @@
 
 ### SSOT
 
-- **eitc-ssot-v1.2.md** (프로젝트 루트, 726줄) — 모든 수치·로직·구조의 최종 출처
+- **eitc-ssot-v1.2.md** (프로젝트 루트, 726줄) — 모든 수치/로직/구조의 최종 출처
 
 ### 완료된 작업
 
@@ -39,58 +39,34 @@
 | 세션7 | 5858a8d | ads.txt 추가, AdSense next/script 전환, Chrome iOS 시크릿 플로팅 수용 |
 | 세션8 | 06d4499→1573165 | PR-5 글 5편 + JSON-LD + SEO + Calculator UX 대수술 |
 | 세션9 | f40d575 | Cloudflare ASN 차단 해결 + 내부링크 보강 |
-| 세션10 | b0aeb52 | 세무서 데이터 133개 + Vercel 빌드 스킵 (아래 상세) |
+| 세션10 | b0aeb52 | 세무서 데이터 133개 + Vercel 빌드 스킵 |
+| 세션11 | aeb2eec | **Canonical URL 정규화 (PR #5)** |
 
-### 세션10 상세 (2026-04-27)
+### 세션11 상세 (2026-05-13)
 
-**support.fazr audit:**
-- support는 인구감소지역 89개 데이터, eitc는 세무서 133개 데이터
-- 도메인 다름 → eitc 독자 설계 확정
-- 페이지 레이아웃 패턴만 참고
+**Canonical URL 정규화 — layout 전역 상속 제거 + 홈 개별 설정**
 
-**세무서 데이터 추가 (`b0aeb52`):**
+변경:
+- `src/app/layout.tsx` — `alternates: { canonical: "/" }` 제거 (전역 상속 방지)
+- `src/app/page.tsx` — `alternates: { canonical: "/" }` 추가 (홈 개별 설정)
 
-```
-src/data/regions/
-  types.ts        — TaxOffice, Region, RegionKey (key/slug 분리)
-  taxOffices.ts   — 133개 세무서 데이터 + 17개 지역 빌드
-  utils.ts        — getRegionByKey, getRegionBySlug, getTaxOfficesByDistrict, searchTaxOffice
-  __tests__/taxOffices.test.ts — 22개 테스트
+오디트 발견:
+- calculator/eligibility는 라우트별 layout.tsx에서 이미 canonical 설정됨
+- faq, updates, updates/[slug]도 기존 canonical 설정 완료
+- 6개 페이지 유형 전부 canonical 커버 확인
+- Round 1.5 (컴포넌트 분리) 불필요 확정
 
-scripts/
-  parseTaxOffices.ts — CSV→TS 1회성 변환 스크립트 (재실행 가능)
-```
+### Canonical 현황 (전 페이지)
 
-- 서울 25개 자치구 전부 역매핑 완료
-- 강남구→3개, 송파구→2개, 서초구→2개, 도봉구→2개, 영등포구→2개, 중구→2개
-- 페이지/라우트 변경 없음
-
-**Vercel Ignored Build Step:**
-```
-git diff --quiet HEAD^ HEAD -- src/ public/ package.json next.config.ts tsconfig.json tailwind.config.ts
-```
-- .md 파일만 push 시 빌드 스킵
-
-### 세무서 데이터 사용법 (5/8 작업 시)
-
-```typescript
-import { getRegionByKey, getTaxOfficesByDistrict } from "@/data/regions/utils";
-
-const seoul = getRegionByKey("seoul");
-// { key: "seoul", slug: "seoul", name: "서울", fullName: "서울특별시", taxOffices: [28개], districtToOffices: {...} }
-
-const offices = getTaxOfficesByDistrict("seoul", "강남구");
-// [강남세무서, 삼성세무서, 역삼세무서]
-```
-
-### key vs slug 분리 원칙
-
-```
-key: 내부 식별자 (변경 X) — getRegionByKey("seoul")
-slug: URL용 (변경 가능) — /regions/seoul, /regions/seoul-gangnam-gu
-초기: key === slug (동일)
-6월 시군구 확장 시 slug만 변경
-```
+| 페이지 | canonical | 설정 위치 |
+|---|---|---|
+| `/` | `https://eitc.fazr.co.kr` | page.tsx |
+| `/calculator` | `https://eitc.fazr.co.kr/calculator` | calculator/layout.tsx |
+| `/eligibility` | `https://eitc.fazr.co.kr/eligibility` | eligibility/layout.tsx |
+| `/faq` | `https://eitc.fazr.co.kr/faq` | faq/page.tsx |
+| `/updates` | `https://eitc.fazr.co.kr/updates` | updates/page.tsx |
+| `/updates/[slug]` | `https://eitc.fazr.co.kr/updates/{slug}` | updates/[slug]/page.tsx generateMetadata |
+| 404 | 없음 | 대상 제외 |
 
 ### Calculator 현재 구조
 
@@ -111,43 +87,18 @@ slug: URL용 (변경 가능) — /regions/seoul, /regions/seoul-gangnam-gu
 - ~~모바일 sticky footer~~ **삭제됨** — 복구 금지
 - ~~ScrollToTopOnNavigation~~ **삭제됨** — support.fazr와 동일
 
-### Eligibility 현재 구조
-
-```
-5문항 체크리스트
-  ↓
-[확인하기] 버튼
-  ↓
-결과 카드 (eligible/reduced/blocked)
-  - eligible/reduced → "신청 방법 확인하기" CTA
-  - blocked → CTA 미표시
-  ↓
-광고 슬롯
-  ↓
-"함께 보면 좋은 정보" 내부링크
-  ↓
-면책 배너
-```
-
 ### /updates 시스템
 
 - 콘텐츠: `src/data/updates.ts` — `UpdatePost { slug, title, description, date, content, faq? }`
 - 정렬: `.sort((a, b) => b.date.localeCompare(a.date))` — 최신글 상단
 - **content에 # h1 넣지 말 것** — page.tsx가 title을 h1으로 렌더링
-- 광고: 목록 2번째 뒤 `2240954488`, 상세 본문 전 `6086273688`
 - JSON-LD: Article (전 글) + FAQPage (faq 필드 있는 글만 조건부)
-
-### FAQ
-
-- 파일: `src/data/faq.ts` — `FaqItem { id, question, answer, category }`
-- 총 16개 (Q1-Q16), FAQPage JSON-LD 자동 반영
-- Q16: 미신청 기한 후 신청 (category: application)
 
 ### 핵심 규칙
 
 1. **engine.ts 직접 import 금지** — wrapper.ts만 경유
 2. **디자인 불변** — shadcn/ui 기존만, 신규 컴포넌트/색상 금지
-3. **콘텐츠 1:1 복사** — content v1.1.md에서, 수치·문장 변경 금지
+3. **콘텐츠 1:1 복사** — content v1.1.md에서, 수치/문장 변경 금지
 4. **body/html 높이 클래스 금지** — iOS 스크롤 버그
 5. **환경변수 이름 변경 금지** — `NEXT_PUBLIC_ADSENSE_PUB_ID` (6곳 참조)
 6. **Next.js metadata 병합 함정** — openGraph/twitter 오버라이드 시 글로벌 필드 명시 필수
@@ -159,16 +110,19 @@ slug: URL용 (변경 가능) — /regions/seoul, /regions/seoul-gangnam-gu
 12. **ScrollToTopOnNavigation 삭제됨** — Next.js 기본 동작 사용
 13. **key vs slug 분리** — key=내부식별자(변경X), slug=URL용(변경가능)
 14. **Vercel Ignored Build Step** — .md만 변경 시 빌드 스킵, 문서는 src/ 밖에 둘 것
+15. **layout.tsx에 alternates.canonical 추가 금지** — 각 페이지/라우트 layout에서 개별 설정
 
 ### 이후 백로그
 
-1. **5/8~ 서울 지역 페이지** — 세무서 데이터 import, support.fazr 레이아웃 참고
-2. **6월 17개 시도 확장** — 1개 템플릿 + 17번 복사
-3. FAQ Q17 "홈택스" (후순위, ROI 낮음)
-4. Cloudflare verified bots 허용 규칙 (선택, 시즌 후)
-5. support.fazr → eitc.fazr 백링크 1~2개
+1. **5/20 데이터 확인** — 네이버/GSC canonical 반영 추이
+2. **Round 2: Calculator SEO 보강** — 5/20 데이터 확인 후 결정
+3. **서울 지역 페이지** — 세무서 데이터 import, support.fazr 레이아웃 참고
+4. **6월 17개 시도 확장** — 1개 템플릿 + 17번 복사
+5. FAQ Q17 "홈택스" (후순위, ROI 낮음)
+6. Cloudflare verified bots 허용 규칙 (선택, 시즌 후)
+7. support.fazr → eitc.fazr 백링크 1~2개
 
-### 운영 체크리스트 (사용자 직접)
+### 운영 체크리스트 (포그린 직접)
 
 - [x] GSC/네이버/다음 색인 등록
 - [x] AdSense + ads.txt
@@ -176,9 +130,12 @@ slug: URL용 (변경 가능) — /regions/seoul, /regions/seoul-gangnam-gu
 - [x] 신규 글 5개 GSC 색인 요청
 - [x] sitemap 재제출
 - [x] Vercel Ignored Build Step 설정
-- [ ] 4/29 데이터 점검 (GSC 색인, 노출/클릭, 네이버, 광고 전환, 카톡)
-- [ ] 리치 결과 테스트 (FAQPage JSON-LD 확인)
-- [ ] 전환율 모니터링
+- [x] Canonical 정규화 배포
+- [x] 네이버 Search Advisor 홈 수집 요청
+- [x] GSC 홈 색인 요청
+- [ ] 5/14 GSC 색인 요청 4개 (/calculator, /eligibility, /faq, /updates)
+- [ ] 5/20 데이터 확인 (네이버 파라미터 URL 노출, GSC 색인, AdSense)
+- [ ] Round 2 결정
 
 ### 알려진 한계 (수용됨)
 
@@ -188,9 +145,8 @@ slug: URL용 (변경 가능) — /regions/seoul, /regions/seoul-gangnam-gu
 ### 일정
 
 ```
-4/29 (화) — 데이터 점검
-4/30 (수) — D-1 점검
-5/1 (목) — 시즌 진입
-5/8~ — 서울 지역 페이지 작성 시작
-6월~ — 17개 시도 확장
+5/14 (수) — GSC 색인 요청 4개
+5/20 (화) — 1주 후 데이터 확인, Round 2 결정
+5/24 (토) — AdSense 입금 예정
+6월~ — 17개 시도 확장 (효과 확인 후)
 ```
