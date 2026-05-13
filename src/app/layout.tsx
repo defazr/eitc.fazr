@@ -20,9 +20,6 @@ export const metadata: Metadata = {
   description:
     "2025년 귀속 근로·자녀장려금 대상 확인, 예상 금액 계산, 신청 방법 안내. 근로장려금 최대 330만원, 자녀장려금 1인당 최대 100만원.",
   metadataBase: new URL("https://eitc.fazr.co.kr"),
-  alternates: {
-    canonical: "/",
-  },
   openGraph: {
     type: "website",
     locale: "ko_KR",

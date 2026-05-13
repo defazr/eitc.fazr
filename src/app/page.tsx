@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import {
   Calculator,
@@ -15,6 +16,12 @@ import { DisclaimerBanner } from "@/components/disclaimer-banner";
 import { AdSlot } from "@/components/ad-slot";
 import { ShareButtons } from "@/components/share-buttons";
 import { UPDATES } from "@/data/updates";
+
+export const metadata: Metadata = {
+  alternates: {
+    canonical: "/",
+  },
+};
 
 const QUICK_LINKS = [
   {
